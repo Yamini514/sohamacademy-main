@@ -33,7 +33,7 @@ export default function Footer() {
           </span>{" "}
           | Designed & Developed by{" "}
           <a
-            href="https://srinishthatech.com"
+            href="https://www.srinishtha.com"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sky-500 hover:underline font-medium"
