@@ -4,7 +4,6 @@ import FadeUp from "./FadeUp";
 
 import history1 from "../assets/h1.png";
 import history2 from "../assets/h2.png";
-// import history3 from "../assets/h3.png";
 
 const historyContent = {
   title: "History",
@@ -25,25 +24,27 @@ const historyContent = {
 
 const HistoryTextBlock = ({ heading, paragraphs }) => (
   <FadeUp>
-    <article className="">
-      <h2 className="text-2xl md:text-3xl font-bold text-[var(--color-heading,#1E293B)]">
+    <article className="max-w-2xl mx-auto md:mx-0">
+      <h2 className="text-2xl md:text-3xl font-bold text-[var(--color-heading,#1E293B)] mb-4 leading-snug">
         {heading}
       </h2>
-      {paragraphs.map((para, i) => (
-        <p
-          key={i}
-          className="text-[var(--color-text,#475569)] leading-relaxed"
-        >
-          {para}
-        </p>
-      ))}
+      <div className="space-y-3">
+        {paragraphs.map((para, i) => (
+          <p
+            key={i}
+            className="text-[var(--color-text,#475569)] text-base leading-relaxed tracking-wide"
+          >
+            {para}
+          </p>
+        ))}
+      </div>
     </article>
   </FadeUp>
 );
 
 const HistoryImages = ({ images }) => (
   <FadeUp>
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-6 md:pl-2 lg:pl-4">
       {images.map((src, i) => (
         <figure
           key={i}
@@ -52,26 +53,26 @@ const HistoryImages = ({ images }) => (
           <img
             src={src}
             alt={`History image ${i + 1}`}
-            className="w-full h-40 object-cover md:h-56 lg:h-50 transform hover:scale-105 transition-transform duration-700 ease-out"
+            className="w-full h-48 object-cover md:h-56 lg:h-60 transform hover:scale-105 transition-transform duration-700 ease-out"
           />
         </figure>
       ))}
     </div>
   </FadeUp>
 );
+
 export default function HistorySection() {
   const { title, heading, paragraphs, images } = historyContent;
 
   return (
-    <section
-      id="history"
-      className=" bg-white  mt-4"
-    >
-      <div className="max-w-7xl mx-auto">
-        <SectionHeader title={title} />
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10 items-start">
-          <HistoryTextBlock className="ml-4 "heading={heading} paragraphs={paragraphs} />
+    <section id="history" className="bg-white mt-3 sm:mt-3">
+      <div >
+          <SectionHeader title={title} />
+        </div>
+      <div className="max-w-7xl mx-auto px-12 sm:px-12 md:px-10 lg:px-11">
+      
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 items-start">
+          <HistoryTextBlock heading={heading} paragraphs={paragraphs} />
           <HistoryImages images={images} />
         </div>
       </div>

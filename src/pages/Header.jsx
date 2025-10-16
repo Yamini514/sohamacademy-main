@@ -1,47 +1,47 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
+/**
+ * Professional, responsive Header
+ * - Centered with max-w-screen-xl (change this if you want narrower/wider)
+ * - Uses rem-based text sizes and responsive breakpoints
+ * - Reserves underline space to avoid layout shifts
+ * - Collapses earlier at lg -> hamburger for tidy layout
+ */
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navLinks = [
     { name: "Home", to: "/" },
     { name: "About Us", to: "/about" },
-  { name: "Dashboard", external:"https://soham-academy-ui.netlify.app/" },
+    { name: "Dashboard", external: "https://soham-academy-ui.netlify.app/" },
     { name: "Reports", to: "/reports" },
     { name: "FTC", to: "/ftc" },
     { name: "Contact", to: "/contact" },
-    
   ];
 
   return (
-    <header className="w-full bg-white sticky top-0 z-50 border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-17">
-          {/* --- Left: Logo Section --- */}
-          <div className="flex items-center space-x-3">
-            
-            <a href="/"> <img
-              src="/brand.png"
-              alt="Soham Academy Logo"
-              className="h-14 w-auto object-contain"
-            /></a>
+    <header className="w-full bg-white/95 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-200 shadow-sm">
+      <div className="PX-3 ">
+        <div className="flex items-center justify-between py-3">
+          <div className="flex items-center gap-4">
+            <a href="/" className="inline-flex items-center">
+              <img
+                src="/brand.png"
+                alt="Soham Academy"
+                className="max-h-10 px-10 md:max-h-14 w-auto object-contain"
+              />
+            </a>
           </div>
-
-          {/* --- Right: Desktop Navigation --- */}
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden lg:flex items-center gap-6 ml-auto">
             {navLinks.map((item) =>
               item.external ? (
-                // ✅ External link (Dashboard)
                 <a
                   key={item.name}
-                   
                   href={item.external}
                   target="_self"
-
-                 
                   rel="noopener noreferrer"
-                  className="text-[15px] font-medium text-gray-800 hover:text-sky-600 transition-colors duration-200"
+                  className="text-sm md:text-base font-medium transition-colors duration-150 text-slate-800 hover:text-sky-600 px-1 py-1"
                 >
                   {item.name}
                 </a>
@@ -49,97 +49,73 @@ export default function Header() {
                 <NavLink
                   key={item.name}
                   to={item.to}
-                  className={({ isActive }) =>
-                    `text-[15px] font-medium transition-colors duration-200 ${
-                      isActive
-                        ? "text-sky-600 border-b-2 border-sky-600 pb-1"
-                        : "text-gray-800 hover:text-sky-600"
-                    }`
-                  }
                   end
+                  className={({ isActive }) =>
+                    `text-sm md:text-base font-medium transition-colors duration-150 px-1 py-1 pb-1 ` +
+                    (isActive
+                      ? "text-sky-600 border-b-2 border-sky-600"
+                      : "text-slate-800 hover:text-sky-600")
+                  }
                 >
                   {item.name}
                 </NavLink>
               )
             )}
           </nav>
-
-          {/* --- Mobile Menu Button --- */}
-          <button
-            className="md:hidden p-2 rounded-md text-gray-600 hover:text-sky-600"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle navigation"
-          >
-            {menuOpen ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+          <div className="flex items-center gap-3">
+            <div className="lg:hidden">
+              <button
+                className="p-2 rounded-md text-slate-700 hover:text-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-300"
+                onClick={() => setMenuOpen(!menuOpen)}
+                aria-label="Toggle navigation"
+                aria-expanded={menuOpen}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 8h16M4 16h16"
-                />
-              </svg>
-            )}
-          </button>
+                {menuOpen ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8h16M4 16h16" />
+                  </svg>
+                )}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* --- Mobile Dropdown Menu --- */}
       {menuOpen && (
-        <div className="md:hidden border-t border-gray-200 bg-white">
-          <div className="px-4 py-3 space-y-1">
-            {navLinks.map((item) =>
-              item.external ? (
-                // ✅ External link for mobile
-                <a
-                  key={item.name}
-                  href={item.external}
-                  target="_self"
-                  rel="noopener noreferrer"
-                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-sky-600 hover:bg-gray-50"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {item.name}
-                </a>
-              ) : (
-                <NavLink
-                  key={item.name}
-                  to={item.to}
-                  className={({ isActive }) =>
-                    `block px-3 py-2 rounded-md text-base font-medium ${
-                      isActive
-                        ? "text-sky-600 bg-sky-50"
-                        : "text-gray-700 hover:text-sky-600 hover:bg-gray-50"
-                    }`
-                  }
-                  onClick={() => setMenuOpen(false)}
-                  end
-                >
-                  {item.name}
-                </NavLink>
-              )
-            )}
+        <div className="lg:hidden border-t border-gray-100 bg-white">
+          <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div className="flex flex-col gap-1">
+              {navLinks.map((item) =>
+                item.external ? (
+                  <a
+                    key={item.name}
+                    href={item.external}
+                    target="_self"
+                    rel="noopener noreferrer"
+                    onClick={() => setMenuOpen(false)}
+                    className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-sky-600 hover:bg-gray-50"
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <NavLink
+                    key={item.name}
+                    to={item.to}
+                    end
+                    onClick={() => setMenuOpen(false)}
+                    className={({ isActive }) =>
+                      `block px-3 py-2 rounded-md text-base font-medium ` +
+                      (isActive ? "text-sky-600 bg-sky-50" : "text-slate-700 hover:text-sky-600 hover:bg-gray-50")
+                    }
+                  >
+                    {item.name}
+                  </NavLink>
+                )
+              )}
+            </div>
           </div>
         </div>
       )}

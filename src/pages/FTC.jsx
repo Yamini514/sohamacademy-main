@@ -60,7 +60,7 @@ export default function FTC() {
   return (
     <main className="bg-white min-h-screen">
       {/* Page Header */}
-      <section className=" border-b border-[var(--color-border,#E2E8F0)]">
+      <section className="">
         <div className="max-w-7xl mx-auto ">
           <SectionHeader
             title="First Tech Challenge (FTC)"
@@ -71,8 +71,8 @@ export default function FTC() {
       </section>
 
       {/* FTC Gallery */}
-      <section className=" bg-[var(--color-secondary,#F5F7FA)]">
-        <div className="max-w-7xl mx-auto ">
+      <section className="">
+        <div className="max-w-7xl mx-auto px-15 ">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {IMAGES.map((img, i) => (
               <div

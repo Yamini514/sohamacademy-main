@@ -93,7 +93,7 @@ const ProgramHighlights = () => {
       id="program-highlights"
       className=" bg-white text-center "
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mt-3 mx-auto px-6">
         {/* Section Heading */}
         <p className="text-sky-500 font-semibold tracking-wide">
           ROBOTICS IN ACADEMICS
@@ -103,7 +103,7 @@ const ProgramHighlights = () => {
         </h2>
 
         {/* Highlights Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-6">
           {highlights.map((item, index) => (
             <div
               key={index}

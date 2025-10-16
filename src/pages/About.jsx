@@ -3,8 +3,8 @@ import React from "react";
 import HeroAbout from "../sections/HeroAbout";
 import HistorySection from "../sections/HistorySection";
 import MissionVision from "./MissionVision";
+import Team from "./Team";
 
-// import TeamSection from "../components/about/TeamSection";
 
 export default function About() {
   return (
@@ -16,7 +16,7 @@ export default function About() {
       <MissionVision />
 
       {/* Team */}
-      {/* <TeamSection /> */}
+      <Team />
     </main>
   );
 }

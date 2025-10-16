@@ -7,15 +7,15 @@ export default function VideoSection() {
   return (
     <section
       id="video-section"
-      className="py-3 bg-white border-t border-gray-100"
+      className="py-4 bg-white border-t border-gray-100"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-8 grid md:grid-cols-2 gap-12 items-center">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 grid md:grid-cols-2 gap-10 items-center">
         {/* --- Left Content --- */}
         <div className="space-y-6">
           <h2 className="text-5xl font-extrabold text-gray-900  leading-tight">
             Robotics is <span className="text-black">Fun,</span>
           </h2>
-          <h3 className="text-2xl font-semibold text-sky-500">
+          <h3 className="text-2xl font-bold text-sky-500">
             Exciting & Engaging!
           </h3>
           <p className="text-gray-600 leading-relaxed text-lg max-w-xl">
@@ -37,7 +37,7 @@ export default function VideoSection() {
             <img
               src={videoImage}
               alt="Soham Academy Robotics Program"
-              className="w-full h-[360px] object-cover"
+              className="w-full h-[290px] object-cover"
             />
 
             {/* Overlay */}

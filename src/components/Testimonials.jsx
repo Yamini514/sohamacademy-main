@@ -110,11 +110,11 @@ export default function Testimonials({
       aria-label="Testimonials"
     >
       <div className="max-w-4xl mx-auto px-6">
-        <h3 className="text-center text-sky-500 font-semibold tracking-wide">TESTIMONIALS</h3>
+        <h3 className="text-center text-sky-500 font-bold tracking-wide ">TESTIMONIALS</h3>
 
         <div className="relative mt-6 flex items-center justify-center">
           {/* Card */}
-          <div className="relative w-full md:w-11/12 lg:w-10/12 rounded-lg border border-gray-100 bg-white shadow-sm p-8 text-center">
+          <div className="relative w-full md:w-1/2 lg:w-12/12 rounded-lg border border-gray-100 bg-white shadow-sm p-8 text-center">
             {/* Stars */}
             <div className="flex justify-center mb-3">
               <div className="flex gap-1">

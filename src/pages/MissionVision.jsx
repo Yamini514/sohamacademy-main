@@ -1,105 +1,94 @@
 import React from "react";
 import FadeUp from "../sections/FadeUp";
-import SectionHeader from "../components/SectionHeader";
-import { Rocket } from "lucide-react"; // use any Lucide icon
+import { Rocket } from "lucide-react";
+
+const PROGRAMS = [
+  "English Proficiency",
+  "Athletics & Sports",
+  "Robotics in Academics",
+  "Soham Fine Arts Program",
+  "Learning Arithmetic",
+  "Human Excellence",
+  "Soham Leadership Program",
+  "Learning through Story",
+  "Emerging Technologies",
+  "Soham Career Guidance",
+];
+
+function chunkArray(arr, n) {
+  const out = Array.from({ length: n }, () => []);
+  arr.forEach((item, i) => out[i % n].push(item));
+  return out;
+}
 
 export default function MissionVision() {
+  const columns = chunkArray(PROGRAMS, 3);
+
   return (
-    <section
-      id="mission"
-      className="py-20 bg-[var(--color-secondary,#F5F7FA)] "
-    >
-      <div className="max-w-6xl mx-auto px-6 mt-3">
-         <div className="text-center mb-8"> {/* reduced from mb-16 to mb-8 */}
-      <h3 className="text-3xl font-medium text-[var(--color-accent,#00B7FF)] mb-2 tracking-wider">
-        ABOUT SOHAM ACADEMY
-      </h3>
-    </div>
+    <section id="mission" className="bg-white py-10 md:py-14">
+      <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16">
+        {/* Section heading */}
+        <header className="text-center mb-6">
+          <h3 className="text-3xl font-medium text-[var(--color-accent,#00B7FF)] mb-2 tracking-wider">
+            ABOUT SOHAM ACADEMY
+          </h3>
+        </header>
 
         <FadeUp>
-          {/* Mission Card */}
-          <div className="bg-white rounded-2xl shadow-md p-10 text-center mt-10">
+          <article
+            className="max-w-5xl mx-auto bg-white border border-gray-200 shadow-lg rounded-2xl p-6 md:p-12"
+            aria-labelledby="mission-title"
+          >
             {/* Icon */}
             <div className="flex justify-center mb-4">
-              <div className="w-14 h-14 rounded-full bg-[var(--color-accent,#00B7FF)] flex items-center justify-center shadow-md">
-                <Rocket className="w-6 h-6 text-white" />
+              <div className="w-16 h-16 rounded-full bg-[var(--color-accent,#00B7FF)] flex items-center justify-center shadow-md">
+                <Rocket className="w-7 h-7 text-white" aria-hidden="true" />
               </div>
             </div>
 
-            {/* Mission Title */}
-            <h2 className="text-2xl md:text-3xl font-bold text-[var(--color-accent,#00B7FF)] mb-4">
+            {/* Title */}
+            <h2
+              id="mission-title"
+              className="text-2xl md:text-3xl font-bold text-[var(--color-accent,#00B7FF)] text-center mb-3"
+            >
               Our Mission
             </h2>
 
-            {/* Mission Description */}
-            <p className="text-[var(--color-text,#6b7280)] text-lg leading-relaxed max-w-3xl mx-auto mb-8">
-              It is our mission to complement the efforts of the schools in
-              doing what they are unable to do and in teaching what they are not
+            {/* Description */}
+            <p className="text-[var(--color-text,#6b7280)] text-base md:text-lg leading-relaxed max-w-4xl mx-auto text-center mb-8">
+              It is our mission to complement the efforts of the schools in doing
+              what they are unable to do and in teaching what they are not
               equipped to teach.
             </p>
 
-            {/* Program List */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-left justify-items-center mt-8">
-              <ul className="space-y-2">
-                <li className="flex items-start gap-2">
-                  <span className="text-[var(--color-accent,#00B7FF)] text-lg">•</span>
-                  <span>English Proficiency</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[var(--color-accent,#00B7FF)] text-lg">•</span>
-                  <span>Athletics & Sports</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[var(--color-accent,#00B7FF)] text-lg">•</span>
-                  <span>Robotics in Academics</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[var(--color-accent,#00B7FF)] text-lg">•</span>
-                  <span>Soham Fine Arts Program</span>
-                </li>
-              </ul>
-
-              <ul className="space-y-2">
-                <li className="flex items-start gap-2">
-                  <span className="text-[var(--color-accent,#00B7FF)] text-lg">•</span>
-                  <span>Learning Arithmetic</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[var(--color-accent,#00B7FF)] text-lg">•</span>
-                  <span>Human Excellence</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[var(--color-accent,#00B7FF)] text-lg">•</span>
-                  <span>Soham Leadership Program</span>
-                </li>
-              </ul>
-
-              <ul className="space-y-2">
-                <li className="flex items-start gap-2">
-                  <span className="text-[var(--color-accent,#00B7FF)] text-lg">•</span>
-                  <span>Learning through Story</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[var(--color-accent,#00B7FF)] text-lg">•</span>
-                  <span>Emerging Technologies</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[var(--color-accent,#00B7FF)] text-lg">•</span>
-                  <span>Soham Career Guidance</span>
-                </li>
-              </ul>
+            {/* Program list (3 responsive columns) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+              {columns.map((col, idx) => (
+                <ul key={idx} className="space-y-3 text-sm md:text-base">
+                  {col.map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <span
+                        className="mt-1 text-[var(--color-accent,#00B7FF)]"
+                        aria-hidden="true"
+                      >
+                        •
+                      </span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              ))}
             </div>
 
             {/* Closing line */}
-            <p className="text-[var(--color-text,#9ca3af)] text-sm leading-relaxed mt-10 max-w-4xl mx-auto">
-              Across all programs being rolled out, children are at the center
-              and the driving force. We unlock the potential of thousands of
-              children by giving them access to high-impact educational
-              experiences.
+            <p className="text-[var(--color-text,#9ca3af)] text-sm leading-relaxed mt-8 max-w-3xl mx-auto text-center">
+              Across all programs being rolled out, children are at the center and
+              the driving force. We unlock the potential of thousands of children
+              by giving them access to high-impact educational experiences.
             </p>
 
-            {/* Certifications Row */}
-            <div className="flex flex-wrap justify-center gap-4 mt-6">
+            {/* Certifications */}
+            <div className="flex flex-wrap justify-center gap-4 mt-6" aria-hidden="false">
               <span className="px-4 py-2 text-sm font-medium bg-green-100 text-green-700 rounded-full flex items-center gap-2">
                 ✅ 12A & 80G Approved
               </span>
@@ -110,7 +99,7 @@ export default function MissionVision() {
                 🏢 CSO Registered
               </span>
             </div>
-          </div>
+          </article>
         </FadeUp>
       </div>
     </section>

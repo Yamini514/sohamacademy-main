@@ -55,9 +55,9 @@ const HeroSection = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-3 text-center">
+      <div className="relative z-10 container mx-auto px-2video text-center">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-sm font-medium text-[#00B7FF] mb-4 animate-fade-in-up tracking-wider">
+          <h2 className="text-lg font-medium text-[#00B7FF]  animate-fade-in-up tracking-wider">
             ROBOTICS IN ACADEMICS
           </h2>
 

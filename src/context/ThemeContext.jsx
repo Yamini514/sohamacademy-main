@@ -12,6 +12,7 @@ const themes = {
     text: "#475569",      // paragraph text
     border: "#E2E8F0",    // light gray border
     link: "#0284C7",      // link blue
+    logo:"#01C1F2", 
   },
 };
 

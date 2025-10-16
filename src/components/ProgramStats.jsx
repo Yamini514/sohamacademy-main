@@ -131,18 +131,18 @@ export default function ProgramStats({ items = DEFAULT_ITEMS, className = "" }) 
   return (
     <section
       ref={containerRef}
-      className={`py-16 bg-white ${className}`}
+      className={` py-10 bg-white ${className}`}
       aria-label="Program statistics"
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto mt-2px-6">
         <div className="text-center mb-10">
           <p className="text-sky-500 font-semibold tracking-wide">ROBOTICS IN ACADEMICS</p>
-          <h2 className="mt-3 text-3xl md:text-4xl font-extrabold text-gray-900">
+          <h2 className="mt-3 text-3xl md:text-4xl font-extrabold text-gray-900 px-8">
             Our track history of Robotics in Academics Competition Program records
           </h2>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 items-stretch">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 items-stretch px-12">
           {items.map((itm, idx) => {
             const { num, suffix } = parseValue(itm.value);
             const displayValue =
