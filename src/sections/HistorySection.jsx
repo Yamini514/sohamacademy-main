@@ -4,7 +4,7 @@ import FadeUp from "./FadeUp";
 
 import history1 from "../assets/h1.png";
 import history2 from "../assets/h2.png";
-import history3 from "../assets/h3.png";
+// import history3 from "../assets/h3.png";
 
 const historyContent = {
   title: "History",
@@ -20,7 +20,7 @@ const historyContent = {
     `As teachers and mentors, we saw the enthusiasm in children to learn design, build, and programming. This motivated us to create a structured, replicable curriculum supported by workshops and teacher training sessions.`,
     `Over time, Soham Academy reached dozens of districts, making robotics accessible even in rural schools. Our history is built on a belief that innovation belongs to everyone — and that technology should inspire creativity at the school level.`,
   ],
-  images: [history1, history2, history3],
+  images: [history1, history2],
 };
 
 const HistoryTextBlock = ({ heading, paragraphs }) => (
@@ -65,7 +65,7 @@ export default function HistorySection() {
   return (
     <section
       id="history"
-      className=" bg-white border-t border-[var(--color-border,#E2E8F0)]"
+      className=" bg-white  mt-4"
     >
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader title={title} />

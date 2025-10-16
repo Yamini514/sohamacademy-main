@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import videoImage from "../assets/video.png";  
 
 export default function VideoSection() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -6,12 +7,12 @@ export default function VideoSection() {
   return (
     <section
       id="video-section"
-      className="py-20 bg-white border-t border-gray-100"
+      className="py-3 bg-white border-t border-gray-100"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-8 grid md:grid-cols-2 gap-12 items-center">
         {/* --- Left Content --- */}
         <div className="space-y-6">
-          <h2 className="text-5xl font-extrabold text-gray-900 leading-tight">
+          <h2 className="text-5xl font-extrabold text-gray-900  leading-tight">
             Robotics is <span className="text-black">Fun,</span>
           </h2>
           <h3 className="text-2xl font-semibold text-sky-500">
@@ -20,10 +21,9 @@ export default function VideoSection() {
           <p className="text-gray-600 leading-relaxed text-lg max-w-xl">
             Robotics In Academics is a unique hands-on robotics training program
             initiated by Soham Academy of Human Excellence. It aims to bring the
-            latest and greatest technologies to the door step of children so as
-            to prepare them for a technologically advanced world that they will
-            inherit. Our well-structured training program assists children in
-            developing a sustained scientific temperament.
+            latest and greatest technologies to the doorstep of children, preparing them for a
+            technologically advanced world that they will inherit. Our well-structured
+            training program assists children in developing a sustained scientific temperament.
           </p>
         </div>
 
@@ -35,7 +35,7 @@ export default function VideoSection() {
           >
             {/* Video thumbnail image */}
             <img
-              src="/video-thumb.png"
+              src={videoImage}
               alt="Soham Academy Robotics Program"
               className="w-full h-[360px] object-cover"
             />
@@ -71,13 +71,13 @@ export default function VideoSection() {
 
               <div className="relative w-full max-w-4xl aspect-video bg-black rounded-lg overflow-hidden">
                 <iframe
-                  src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0"
+                  src="https://www.youtube.com/embed/BMjo7qHE58k?autoplay=1&rel=0"
                   title="Robotics Program Video"
                   className="w-full h-full"
                   frameBorder="0"
                   allow="autoplay; fullscreen; encrypted-media"
                   allowFullScreen
-                ></iframe>
+                />
               </div>
             </div>
           )}

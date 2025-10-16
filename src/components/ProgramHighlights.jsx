@@ -91,7 +91,7 @@ const ProgramHighlights = () => {
   return (
     <section
       id="program-highlights"
-      className="py-20 bg-white text-center border-t border-gray-100"
+      className=" bg-white text-center "
     >
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Heading */}

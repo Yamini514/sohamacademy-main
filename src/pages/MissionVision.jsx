@@ -7,9 +7,9 @@ export default function MissionVision() {
   return (
     <section
       id="mission"
-      className="py-20 bg-[var(--color-secondary,#F5F7FA)] border-t border-[var(--color-border,#E2E8F0)]"
+      className="py-20 bg-[var(--color-secondary,#F5F7FA)] "
     >
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6 mt-3">
          <div className="text-center mb-8"> {/* reduced from mb-16 to mb-8 */}
       <h3 className="text-3xl font-medium text-primary mb-2 tracking-wider">
         ABOUT SOHAM ACADEMY

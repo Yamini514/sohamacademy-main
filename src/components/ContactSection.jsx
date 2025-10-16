@@ -1,13 +1,6 @@
-// src/sections/contact/ContactSection.jsx
+
 import React, { useState } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
-
-/**
- * ContactSection
- * - Local form state
- * - Dispatches custom events 'contact:status' with { type, text }
- * - Basic validation for email and message
- */
 
 export default function ContactSection() {
   const [form, setForm] = useState({
@@ -26,26 +19,18 @@ export default function ContactSection() {
 
   function dispatchStatus(type, text) {
     const payload = { type, text };
-    // local UI
     setStatus(payload);
-    // global page-level toast
     window.dispatchEvent(new CustomEvent("contact:status", { detail: payload }));
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
-
-    // basic validation
     if (!form.email || !form.message) {
       dispatchStatus("error", "Please enter your email and message.");
       return;
     }
 
     try {
-      // TODO: replace this with a real API call (EmailJS, server API, etc.)
-      // example: await fetch("/api/contact", { method: "POST", body: JSON.stringify(form) })
-
-      // simulate success
       dispatchStatus("success", "Thanks — your message was sent successfully (demo).");
       setForm({ name: "", phone: "", email: "", subject: "", message: "" });
     } catch (err) {
@@ -55,7 +40,7 @@ export default function ContactSection() {
   }
 
   return (
-    <section className="py-12 bg-white" aria-label="Contact">
+    <section className=" bg-white" aria-label="Contact">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-8">
           {/* Left column: contact details */}

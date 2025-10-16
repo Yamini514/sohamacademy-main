@@ -11,7 +11,7 @@ export default function Contact() {
       const detail = e?.detail;
       if (detail?.type && detail?.text) {
         setAlert(detail);
-        // auto hide
+      
         const t = setTimeout(() => setAlert(null), 3500);
         return () => clearTimeout(t);
       }
@@ -25,15 +25,13 @@ export default function Contact() {
     <main className="bg-white min-h-screen relative">
       {/* Header */}
       <section >
-        <div className="max-w-7xl mx-auto px-2">
+        <div className="max-w-7xl mx-auto px-6">
           <SectionHeader
             title="Contact"
             subtitle="Want a similar program for your school or institution? Don’t hesitate to reach out!"
           />
         </div>
       </section>
-
-      {/* Contact Section */}
       <ContactSection />
 
       {/* Floating Message (toast) */}

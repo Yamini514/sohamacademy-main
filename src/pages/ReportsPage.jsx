@@ -1,6 +1,6 @@
-// src/pages/ReportsPage.jsx
+
 import React, { useEffect, useMemo, useState } from "react";
-import SectionHeader from "../components/SectionHeader"; // adjust path if needed
+import SectionHeader from "../components/SectionHeader"; 
 
 const REPORTS = [
   {
@@ -11,7 +11,7 @@ const REPORTS = [
     thumb: "/reports/annual-2024-thumb.jpg",
     pdf: "/reports/annual-2024.pdf",
   },
-  // add more items...
+  
 ];
 
 const TABS = [
@@ -36,12 +36,12 @@ function IconDownload() {
 }
 
 export default function ReportsPage() {
-  // active tab default to Annual (like your screenshot)
+  
   const [activeTab, setActiveTab] = useState(TABS[2]);
   const [query, setQuery] = useState("");
   const [openPdf, setOpenPdf] = useState(null);
 
-  // close modal on ESC
+
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === "Escape") setOpenPdf(null);
@@ -56,49 +56,45 @@ export default function ReportsPage() {
   }, [activeTab, query]);
 
   return (
-    <main className="bg-white min-h-screen">
-     
+    <main className="bg-white min-h-screen px-5">
+
       <SectionHeader
         title="Reports & Publications"
         subtitle="Explore our comprehensive collection of reports, publications, and documentation showcasing our journey, achievements, and impact in robotics education across various schools and institutions."
       />
 
-     <div className="bg-slate-100">
-  <div className="max-w-7xl mx-auto px-6 py-6 flex justify-center">
-    <div className="inline-flex gap-2 bg-transparent flex-wrap justify-center">
-      {TABS.map((tab) => {
-        const active = tab === activeTab;
-        return (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`px-4 py-2 text-sm rounded-md transition ${
-              active
-                ? "bg-[#00B7FF] text-white shadow"
-                : "bg-white text-gray-700 border border-transparent hover:border-slate-200"
-            }`}
-            aria-pressed={active}
-          >
-            {tab}
-          </button>
-        );
-      })}
-    </div>
-  </div>
-</div>
-
-
-    
+      <div className="bg-slate-100">
+        <div className="max-w-7xl mx-auto px-6 py-6 flex justify-center">
+          <div className="inline-flex gap-2 bg-transparent flex-wrap justify-center">
+            {TABS.map((tab) => {
+              const active = tab === activeTab;
+              return (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`px-4 py-2 text-sm rounded-md transition ${active
+                      ? "bg-[#00B7FF] text-white shadow"
+                      : "bg-white text-gray-700 border border-transparent hover:border-slate-200"
+                    }`}
+                  aria-pressed={active}
+                >
+                  {tab}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
       <section className="max-w-7xl mx-auto px-6 py-6 text-center">
         <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2">{activeTab}</h2>
         <p className="text-gray-500 mb-8">Comprehensive yearly reports covering all our activities and achievements</p>
 
-        
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-start items-start">
           {filtered.length ? (
             filtered.map((r) => (
               <article key={r.id} className="group bg-white border border-gray-100 rounded-xl overflow-hidden shadow-sm max-w-md">
-               
+
                 <div className="relative h-52 overflow-hidden bg-slate-50">
                   <img
                     src={r.thumb}

@@ -21,12 +21,13 @@ export default function SectionHeader({ title, subtitle, className = "" }) {
       </div>
 
       {subtitle && (
-        <p
-          className="mt-6 ml-4 max-w-4xl text-[var(--color-text-secondary)] text-base sm:text-lg md:text-xl leading-relaxed"
-          style={{ color: "var(--color-text-secondary)" }}
-        >
-          {subtitle}
-        </p>
+       <p
+  className="mt-4 md:mt-6 ml-0 md:ml-14 text-base sm:text-lg md:text-xl leading-relaxed text-[var(--color-text-secondary)]"
+  style={{ color: "var(--color-text-secondary)" }}
+>
+  {subtitle}
+</p>
+
       )}
     </div>
   );

@@ -1,12 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 
-/**
- * Testimonials carousel
- * - autoplay with pause on hover/focus
- * - next/prev controls and dots
- * - supports keyboard navigation (Left/Right/Escape)
- */
 export default function Testimonials({
   className = "",
   autoPlay = true,
@@ -37,10 +31,11 @@ export default function Testimonials({
   ];
 
   const [index, setIndex] = useState(0);
-  const [playing, setPlaying] = useState(autoPlay);
+  const [playing, setPlaying] = useState(!!autoPlay);
   const timerRef = useRef(null);
   const rootRef = useRef(null);
 
+  // keyboard navigation
   useEffect(() => {
     function keyHandler(e) {
       if (e.key === "ArrowRight") next();
@@ -52,6 +47,20 @@ export default function Testimonials({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // pause when tab hidden
+  useEffect(() => {
+    function handleVisibility() {
+      if (document.hidden) {
+        setPlaying(false);
+      } else {
+        setPlaying(autoPlay);
+      }
+    }
+    document.addEventListener("visibilitychange", handleVisibility);
+    return () => document.removeEventListener("visibilitychange", handleVisibility);
+  }, [autoPlay]);
+
+  // autoplay interval (clears/restarts when playing/delay changes)
   useEffect(() => {
     if (!playing) {
       if (timerRef.current) {
@@ -60,14 +69,35 @@ export default function Testimonials({
       }
       return;
     }
+
+    // clear any old timer first
+    if (timerRef.current) clearInterval(timerRef.current);
+
     timerRef.current = setInterval(() => {
       setIndex((i) => (i + 1) % testimonials.length);
     }, delay);
-    return () => clearInterval(timerRef.current);
+
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+        timerRef.current = null;
+      }
+    };
   }, [playing, delay, testimonials.length]);
 
-  const next = () => setIndex((i) => (i + 1) % testimonials.length);
-  const prev = () => setIndex((i) => (i - 1 + testimonials.length) % testimonials.length);
+  // cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, []);
+
+  const next = () => {
+    setIndex((i) => (i + 1) % testimonials.length);
+  };
+  const prev = () => {
+    setIndex((i) => (i - 1 + testimonials.length) % testimonials.length);
+  };
 
   return (
     <section
@@ -81,9 +111,11 @@ export default function Testimonials({
     >
       <div className="max-w-4xl mx-auto px-6">
         <h3 className="text-center text-sky-500 font-semibold tracking-wide">TESTIMONIALS</h3>
-        <div className="relative mt-6">
+
+        <div className="relative mt-6 flex items-center justify-center">
           {/* Card */}
-          <div className="rounded-lg border border-gray-100 bg-white shadow-sm p-8 text-center">
+          <div className="relative w-full md:w-11/12 lg:w-10/12 rounded-lg border border-gray-100 bg-white shadow-sm p-8 text-center">
+            {/* Stars */}
             <div className="flex justify-center mb-3">
               <div className="flex gap-1">
                 {Array.from({ length: testimonials[index].rating }).map((_, i) => (
@@ -92,43 +124,47 @@ export default function Testimonials({
               </div>
             </div>
 
-            <blockquote className="text-gray-700 italic text-lg md:text-xl max-w-[85%] mx-auto mb-6 leading-relaxed">
+            <blockquote
+              className="text-gray-700 italic text-lg md:text-xl max-w-[85%] mx-auto mb-6 leading-relaxed"
+              aria-live="polite"
+            >
               {testimonials[index].quote}
             </blockquote>
 
             <div className="text-sm font-semibold text-gray-900">{testimonials[index].name}</div>
             <div className="text-sm text-gray-400">{testimonials[index].meta}</div>
-          </div>
 
-          {/* Nav buttons */}
-          <button
-            aria-label="Previous testimonial"
-            onClick={prev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-md hover:bg-gray-50"
-          >
-            <ChevronLeft className="w-5 h-5 text-gray-700" />
-          </button>
-          <button
-            aria-label="Next testimonial"
-            onClick={next}
-            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-md hover:bg-gray-50"
-          >
-            <ChevronRight className="w-5 h-5 text-gray-700" />
-          </button>
+            {/* Nav buttons - INSIDE the card, centered vertically */}
+            <button
+              aria-label="Previous testimonial"
+              onClick={prev}
+              className="absolute z-20 top-1/2 -translate-y-1/2 left-4 bg-white p-3 rounded-full shadow-md hover:bg-gray-50 focus:outline-none"
+            >
+              <ChevronLeft className="w-5 h-5 text-gray-700" />
+            </button>
 
-          {/* Dots */}
-          <div className="mt-6 flex justify-center gap-3">
-            {testimonials.map((_, i) => (
-              <button
-                key={i}
-                aria-label={`Show testimonial ${i + 1}`}
-                onClick={() => setIndex(i)}
-                className={`w-3 h-3 rounded-full transition-colors ${
-                  i === index ? "bg-sky-500" : "bg-sky-200"
-                }`}
-              />
-            ))}
+            <button
+              aria-label="Next testimonial"
+              onClick={next}
+              className="absolute z-20 top-1/2 -translate-y-1/2 right-4 bg-white p-3 rounded-full shadow-md hover:bg-gray-50 focus:outline-none"
+            >
+              <ChevronRight className="w-5 h-5 text-gray-700" />
+            </button>
           </div>
+        </div>
+
+        {/* Dots */}
+        <div className="mt-6 flex justify-center gap-3">
+          {testimonials.map((_, i) => (
+            <button
+              key={i}
+              aria-label={`Show testimonial ${i + 1}`}
+              onClick={() => setIndex(i)}
+              className={`w-3 h-3 rounded-full transition-colors ${
+                i === index ? "bg-sky-500" : "bg-sky-200"
+              }`}
+            />
+          ))}
         </div>
       </div>
     </section>

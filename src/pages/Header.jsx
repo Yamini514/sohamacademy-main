@@ -7,7 +7,7 @@ export default function Header() {
   const navLinks = [
     { name: "Home", to: "/" },
     { name: "About Us", to: "/about" },
-    { name: "Dashboard", external: "https://soham-academy-ui.netlify.app/" }, 
+  { name: "Dashboard", external:"https://soham-academy-ui.netlify.app/" },
     { name: "Reports", to: "/reports" },
     { name: "FTC", to: "/ftc" },
     { name: "Contact", to: "/contact" },
@@ -34,8 +34,11 @@ export default function Header() {
                 // ✅ External link (Dashboard)
                 <a
                   key={item.name}
+                   
                   href={item.external}
-                  target="_blank"
+                  target="_self"
+
+                 
                   rel="noopener noreferrer"
                   className="text-[15px] font-medium text-gray-800 hover:text-sky-600 transition-colors duration-200"
                 >
@@ -111,7 +114,7 @@ export default function Header() {
                 <a
                   key={item.name}
                   href={item.external}
-                  target="_blank"
+                  target="_self"
                   rel="noopener noreferrer"
                   className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-sky-600 hover:bg-gray-50"
                   onClick={() => setMenuOpen(false)}

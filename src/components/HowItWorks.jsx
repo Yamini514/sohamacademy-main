@@ -58,7 +58,7 @@ export default function HowItWorks() {
     <section
       id="how-it-works"
       aria-labelledby="how-it-works-title"
-      className="py-20 bg-white"
+      className=" bg-white"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
         <p className="text-sky-500 font-semibold tracking-wide mb-3">
