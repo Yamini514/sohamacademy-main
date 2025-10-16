@@ -11,7 +11,7 @@ export default function MissionVision() {
     >
       <div className="max-w-6xl mx-auto px-6 mt-3">
          <div className="text-center mb-8"> {/* reduced from mb-16 to mb-8 */}
-      <h3 className="text-3xl font-medium text-primary mb-2 tracking-wider">
+      <h3 className="text-3xl font-medium text-[var(--color-accent,#00B7FF)] mb-2 tracking-wider">
         ABOUT SOHAM ACADEMY
       </h3>
     </div>

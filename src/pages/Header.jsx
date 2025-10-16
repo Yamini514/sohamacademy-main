@@ -20,11 +20,12 @@ export default function Header() {
         <div className="flex justify-between items-center h-17">
           {/* --- Left: Logo Section --- */}
           <div className="flex items-center space-x-3">
-            <img
+            
+            <a href="/"> <img
               src="/brand.png"
               alt="Soham Academy Logo"
               className="h-14 w-auto object-contain"
-            />
+            /></a>
           </div>
 
           {/* --- Right: Desktop Navigation --- */}

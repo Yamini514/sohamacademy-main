@@ -61,7 +61,7 @@ export default function FTC() {
     <main className="bg-white min-h-screen">
       {/* Page Header */}
       <section className=" border-b border-[var(--color-border,#E2E8F0)]">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto ">
           <SectionHeader
             title="First Tech Challenge (FTC)"
             subtitle="We, Soham Academy (#24067), made our debut in the First Tech Challenge (FTC), joining a vibrant community of innovators from India, Kazakhstan, and Sri Lanka! 
@@ -72,7 +72,7 @@ export default function FTC() {
 
       {/* FTC Gallery */}
       <section className=" bg-[var(--color-secondary,#F5F7FA)]">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="max-w-7xl mx-auto ">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {IMAGES.map((img, i) => (
               <div

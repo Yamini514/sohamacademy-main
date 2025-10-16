@@ -25,7 +25,7 @@ export default function Contact() {
     <main className="bg-white min-h-screen relative">
       {/* Header */}
       <section >
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto ">
           <SectionHeader
             title="Contact"
             subtitle="Want a similar program for your school or institution? Don’t hesitate to reach out!"

@@ -25,7 +25,7 @@ const historyContent = {
 
 const HistoryTextBlock = ({ heading, paragraphs }) => (
   <FadeUp>
-    <article className="space-y-4">
+    <article className="">
       <h2 className="text-2xl md:text-3xl font-bold text-[var(--color-heading,#1E293B)]">
         {heading}
       </h2>
@@ -67,11 +67,11 @@ export default function HistorySection() {
       id="history"
       className=" bg-white  mt-4"
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto">
         <SectionHeader title={title} />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10 items-start">
-          <HistoryTextBlock heading={heading} paragraphs={paragraphs} />
+          <HistoryTextBlock className="ml-4 "heading={heading} paragraphs={paragraphs} />
           <HistoryImages images={images} />
         </div>
       </div>

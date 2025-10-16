@@ -74,8 +74,13 @@ const HeroSection = () => {
             className="tech-glow animate-fade-in-up animation-delay-600 "
             onClick={() => {
               const section = document.getElementById("video-section");
-              if (section) section.scrollIntoView({ behavior: "smooth" });
+              if (section) {
+                const yOffset = -80; // adjust for header height or padding
+                const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({ top: y, behavior: "smooth" });
+              }
             }}
+
           >
             Discover More
           </Button>
@@ -103,9 +108,8 @@ const HeroSection = () => {
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full transition-colors ${
-              index === currentSlide ? "bg-primary" : "bg-primary/30"
-            }`}
+            className={`w-3 h-3 rounded-full transition-colors ${index === currentSlide ? "bg-primary" : "bg-primary/30"
+              }`}
           />
         ))}
       </div>

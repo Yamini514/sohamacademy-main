@@ -56,7 +56,7 @@ export default function ReportsPage() {
   }, [activeTab, query]);
 
   return (
-    <main className="bg-white min-h-screen px-5">
+    <main className="bg-white min-h-screen ">
 
       <SectionHeader
         title="Reports & Publications"
