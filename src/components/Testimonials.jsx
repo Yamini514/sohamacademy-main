@@ -110,7 +110,7 @@ export default function Testimonials({
       aria-label="Testimonials"
     >
       <div className="max-w-4xl mx-auto px-6">
-        <h3 className="text-center text-sky-500 font-bold tracking-wide ">TESTIMONIALS</h3>
+        <h3 className="text-center text-sky-500 font-extrabold h-full w-full tracking-wide ">TESTIMONIALS</h3>
 
         <div className="relative mt-6 flex items-center justify-center">
           {/* Card */}
