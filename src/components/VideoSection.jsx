@@ -9,7 +9,7 @@ export default function VideoSection() {
       id="video-section"
       className="py-4 bg-white border-t border-gray-100"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-8 grid md:grid-cols-2 gap-10 items-center">
+      <div className="max-w-7xl mx-auto px-10 md:px-10 grid md:grid-cols-2 gap-10 items-center">
         {/* --- Left Content --- */}
         <div className="space-y-6">
           <h2 className="text-5xl font-extrabold text-gray-900  leading-tight">
