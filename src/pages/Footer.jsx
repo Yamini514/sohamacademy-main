@@ -42,14 +42,7 @@ export default function Footer() {
           </a>
         </p>
 
-        {/* Right side: Small Logo */}
-        <div className="flex items-center gap-2">
-          <img
-            src={logo}
-            alt="Soham Academy Logo"
-            className="h-auto w-auto max-h-10 object-contain"
-          />
-        </div>
+        
       </div>
     </footer>
   );
