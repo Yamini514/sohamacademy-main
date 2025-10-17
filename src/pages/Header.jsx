@@ -3,10 +3,6 @@ import { NavLink } from "react-router-dom";
 
 /**
  * Professional, responsive Header
- * - Centered with max-w-screen-xl (change this if you want narrower/wider)
- * - Uses rem-based text sizes and responsive breakpoints
- * - Reserves underline space to avoid layout shifts
- * - Collapses earlier at lg -> hamburger for tidy layout
  */
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -20,12 +16,28 @@ export default function Header() {
     { name: "Contact", to: "/contact" },
   ];
 
+  const handleClick = (closeMenu = false, external = false, href = "") => {
+    if (closeMenu) setMenuOpen(false);
+    // If external, navigate will happen naturally; still scroll to top
+    // Use smooth or instant as you prefer
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    // For external links we don't prevent default here; anchor does navigation.
+    // For SPA NavLink the route will change and page will be at top due to this call.
+  };
+
   return (
     <header className="w-full bg-white/95 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-200 shadow-sm">
       <div className="PX-3 ">
         <div className="flex items-center justify-between py-3">
           <div className="flex items-center gap-4">
-            <a href="/" className="inline-flex items-center">
+            <a
+              href="/"
+              className="inline-flex items-center"
+              onClick={(e) => {
+                // ensure clicking brand also scrolls to top
+                handleClick(true);
+              }}
+            >
               <img
                 src="/brand.png"
                 alt="Soham Academy"
@@ -42,6 +54,7 @@ export default function Header() {
                   target="_self"
                   rel="noopener noreferrer"
                   className="text-sm md:text-base font-medium transition-colors duration-150 text-slate-800 hover:text-sky-600 px-1 py-1"
+                  onClick={() => handleClick(false, true, item.external)}
                 >
                   {item.name}
                 </a>
@@ -56,6 +69,7 @@ export default function Header() {
                       ? "text-sky-600 border-b-2 border-sky-600"
                       : "text-slate-800 hover:text-sky-600")
                   }
+                  onClick={() => handleClick(false)}
                 >
                   {item.name}
                 </NavLink>
@@ -95,7 +109,7 @@ export default function Header() {
                     href={item.external}
                     target="_self"
                     rel="noopener noreferrer"
-                    onClick={() => setMenuOpen(false)}
+                    onClick={() => handleClick(true, true, item.external)}
                     className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-sky-600 hover:bg-gray-50"
                   >
                     {item.name}
@@ -105,7 +119,7 @@ export default function Header() {
                     key={item.name}
                     to={item.to}
                     end
-                    onClick={() => setMenuOpen(false)}
+                    onClick={() => handleClick(true)}
                     className={({ isActive }) =>
                       `block px-3 py-2 rounded-md text-base font-medium ` +
                       (isActive ? "text-sky-600 bg-sky-50" : "text-slate-700 hover:text-sky-600 hover:bg-gray-50")
