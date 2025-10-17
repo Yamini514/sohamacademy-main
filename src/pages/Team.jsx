@@ -67,10 +67,6 @@ export default function Team() {
           ))}
         </section>
 
-        {/* small caption */}
-        <p className="mt-10 text-center text-sm text-slate-500">
-          Want to join the team? <a href="/contact" className="text-sky-600 underline">Get in touch</a>.
-        </p>
       </div>
     </main>
   );
