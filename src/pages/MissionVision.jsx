@@ -25,7 +25,7 @@ export default function MissionVision() {
   const columns = chunkArray(PROGRAMS, 3);
 
   return (
-    <section id="mission" className="bg-white py-10 md:py-14">
+    <section id="mission" className="bg-white  md:py-10">
       <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16">
         {/* Section heading */}
         <header className="text-center mb-6">
