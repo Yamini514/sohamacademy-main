@@ -18,11 +18,9 @@ export default function Header() {
 
   const handleClick = (closeMenu = false, external = false, href = "") => {
     if (closeMenu) setMenuOpen(false);
-    // If external, navigate will happen naturally; still scroll to top
-    // Use smooth or instant as you prefer
+    
     window.scrollTo({ top: 0, behavior: "smooth" });
-    // For external links we don't prevent default here; anchor does navigation.
-    // For SPA NavLink the route will change and page will be at top due to this call.
+    
   };
 
   return (

@@ -9,6 +9,7 @@ import Team from "./Team";
 export default function About() {
   return (
     <main className="bg-white min-h-screen">
+      <section>
       <HeroAbout />
       <HistorySection />
 
@@ -17,6 +18,7 @@ export default function About() {
 
       {/* Team */}
       <Team />
+      </section>
     </main>
   );
 }

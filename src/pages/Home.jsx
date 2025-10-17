@@ -11,6 +11,7 @@ import ContactSection from "../components/ContactSection";
 export default function Home() {
   return (
     <main className="min-h-screen bg-white  text-gray-800">
+      <section>
       <HeroSection />
       <VideoSection  />
       <ProgramHighlights />
@@ -19,6 +20,7 @@ export default function Home() {
       <Testimonials/>
       <CSRPartners/>
       <ContactSection />
+      </section>
     </main>
   );
 }
