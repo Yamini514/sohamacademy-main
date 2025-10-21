@@ -136,8 +136,8 @@ export default function ProgramStats({ items = DEFAULT_ITEMS, className = "" }) 
     >
       <div className="max-w-7xl mx-auto mt-2px-6">
         <div className="text-center mb-10">
-          <p className="text-sky-500 font-semibold tracking-wide">ROBOTICS IN ACADEMICS</p>
-          <h2 className="mt-3 text-3xl md:text-4xl font-extrabold text-gray-900 px-8">
+          {/* <p className="text-sky-500 font-semibold tracking-wide">ROBOTICS IN ACADEMICS</p> */}
+          <h2 className="mt-3 text-3xl md:text-4xl font-bold text-gray-900 px-8">
             Our track history of Robotics in Academics Competition Program records
           </h2>
         </div>

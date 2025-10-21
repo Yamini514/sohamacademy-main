@@ -109,8 +109,10 @@ export default function Testimonials({
       onBlur={() => setPlaying(autoPlay)}
       aria-label="Testimonials"
     >
-      <div className="max-w-4xl mx-auto px-6">
-        <h3 className="text-center text-sky-500 font-extrabold h-full w-full tracking-wide ">TESTIMONIALS</h3>
+      <div className="max-w-4xl mx-auto">
+        <h3 className="text-center text-sky-500 font-semibold text-xl sm:text-3xl md:text-4xl tracking-wide mb-8">
+          TESTIMONIALS
+        </h3>
 
         <div className="relative mt-6 flex items-center justify-center">
           {/* Card */}
@@ -160,9 +162,8 @@ export default function Testimonials({
               key={i}
               aria-label={`Show testimonial ${i + 1}`}
               onClick={() => setIndex(i)}
-              className={`w-3 h-3 rounded-full transition-colors ${
-                i === index ? "bg-sky-500" : "bg-sky-200"
-              }`}
+              className={`w-3 h-3 rounded-full transition-colors ${i === index ? "bg-sky-500" : "bg-sky-200"
+                }`}
             />
           ))}
         </div>

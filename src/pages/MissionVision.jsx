@@ -25,13 +25,11 @@ export default function MissionVision() {
   const columns = chunkArray(PROGRAMS, 3);
 
   return (
-    <section id="mission" className="bg-white  md:py-12">
+    <section id="mission" className="bg-white py-4">
       <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16">
         {/* Section heading */}
         <header className="text-center mb-6">
-          <h3 className="text-3xl font-medium py-8 text-[var(--color-accent,#00B7FF)] mb-2 tracking-wider">
-            ABOUT SOHAM ACADEMY
-          </h3>
+         
         </header>
 
         <FadeUp>

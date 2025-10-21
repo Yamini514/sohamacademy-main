@@ -21,8 +21,8 @@ export default function Team() {
       <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16">
         {/* Section heading */}
         <header className="text-center mb-10">
-          <p className="text-sm text-sky-500 font-bold tracking-wide">OUR LEADERSHIP</p>
-          <h1 className="mt-2 text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900">
+          <p className="mt-3 text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900">OUR LEADERSHIP</p>
+          <h1 className="text-2xl py-5 text-sky-500 font-bold tracking-wide">
             Awesome People Behind Us
           </h1>
         </header>

@@ -65,14 +65,14 @@ export default function ReportsPage() {
 
       <div className="bg-slate-100">
         <div className="max-w-7xl mx-auto px-6 py-6 flex justify-center">
-          <div className="inline-flex gap-2 bg-transparent flex-wrap justify-center">
+          <div className="inline-flex gap-3 bg-transparent flex-wrap justify-center">
             {TABS.map((tab) => {
               const active = tab === activeTab;
               return (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`px-2 py-2 text-sm rounded-md transition ${active
+                  className={`px-2 bt-3 text-sm rounded-md transition ${active
                       ? "bg-[#00B7FF] text-white shadow"
                       : "bg-white text-gray-700 border border-transparent hover:border-slate-200"
                     }`}

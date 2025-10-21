@@ -56,58 +56,65 @@ const STEPS = [
 export default function HowItWorks() {
   return (
     <section
-      id="how-it-works"
-      aria-labelledby="how-it-works-title"
-      className=" bg-white"
+  id="how-it-works"
+  aria-labelledby="how-it-works-title"
+  className="relative bg-white"
+>
+  {/* Background overlay image */}
+  <div
+    className="absolute inset-0 bg-center bg-cover bg-no-repeat"
+    style={{
+      backgroundImage: "url('https://ria.sohamacademy.org/wp-content/uploads/2024/06/1.jpg')",
+      backgroundBlendMode: "overlay",
+      backgroundColor: "rgba(255,255,255,0.6)", // 80% transparency overlay
+    }}
+  ></div>
+
+  {/* Content */}
+  <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-10 text-center">
+    <h2
+      id="how-it-works-title"
+      className="text-4xl md:text-5xl font-bold text-gray-900 mb-10"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-        <p className="text-sky-500 font-semibold tracking-wide mb-3">
-          OUR PROGRAM PLANNER
-        </p>
+      How It Works
+    </h2>
 
-        <h2
-          id="how-it-works-title"
-          className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-10"
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {STEPS.map((step) => (
+        <div
+          key={step.id}
+          role="article"
+          tabIndex={0}
+          aria-labelledby={`step-title-${step.id}`}
+          className="group bg-white border border-gray-100 rounded-xl p-6 text-left transition-transform duration-250 ease-out cursor-default
+                     hover:scale-[1.02] hover:border-sky-400 hover:shadow-[0_12px_30px_rgba(0,183,255,0.08)]
+                     focus:outline-none focus:ring-4 focus:ring-sky-100 focus:border-sky-400"
         >
-          How It Works
-        </h2>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-6">
-          {STEPS.map((step) => (
+          <div className="flex items-start gap-4">
             <div
-              key={step.id}
-              role="article"
-              tabIndex={0}
-              aria-labelledby={`step-title-${step.id}`}
-              className="group bg-white border border-gray-100 rounded-xl p-6 text-left transition-transform duration-250 ease-out cursor-default
-                         hover:scale-[1.02] hover:border-sky-400 hover:shadow-[0_12px_30px_rgba(0,183,255,0.08)]
-                         focus:outline-none focus:ring-4 focus:ring-sky-100 focus:border-sky-400"
+              className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-full bg-sky-400 text-white font-semibold"
+              aria-hidden
             >
-              <div className="flex items-start gap-4">
-                {/* Number circle */}
-                <div
-                  className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-full bg-sky-400 text-white font-semibold"
-                  aria-hidden
-                >
-                  {step.id}
-                </div>
-
-                <div className="flex-1">
-                  <h3
-                    id={`step-title-${step.id}`}
-                    className="text-md md:text-lg font-semibold text-gray-900"
-                  >
-                    {step.title}
-                  </h3>
-                  <p className="mt-3 text-sm text-gray-500 leading-relaxed">
-                    {step.desc}
-                  </p>
-                </div>
-              </div>
+              {step.id}
             </div>
-          ))}
+
+            <div className="flex-1">
+              <h3
+                id={`step-title-${step.id}`}
+                className="text-md md:text-lg font-semibold text-gray-900"
+              >
+                {step.title}
+              </h3>
+              <p className="mt-3 text-sm text-gray-500 leading-relaxed">
+                {step.desc}
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      ))}
+    </div>
+  </div>
+</section>
+
   );
 }

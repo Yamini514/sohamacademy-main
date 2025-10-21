@@ -7,15 +7,16 @@ export default function VideoSection() {
   return (
     <section
       id="video-section"
-      className="py-4 bg-white border-t border-gray-100"
+      className="py-10 bg-white border-t border-gray-100"
+      
     >
       <div className="max-w-7xl mx-auto px-10 md:px-10 grid md:grid-cols-2 gap-10 items-center">
         {/* --- Left Content --- */}
         <div className="space-y-6">
-          <h2 className="text-5xl font-extrabold text-gray-900  leading-tight">
+          <h2 className="text-5xl font-bold text-gray-900  leading-tight">
             Robotics is <span className="text-black">Fun,</span>
           </h2>
-          <h3 className="text-2xl font-bold text-sky-500">
+          <h3 className="text-2xl py-1 font-bold text-sky-500">
             Exciting & Engaging!
           </h3>
           <p className="text-gray-600 leading-relaxed text-lg max-w-xl">
