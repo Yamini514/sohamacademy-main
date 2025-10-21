@@ -92,13 +92,19 @@ const ProgramHighlights = () => {
     <section
       id="program-highlights"
       className=" bg-white text-center "
+       style={{
+    backgroundImage: `url('https://ria.sohamacademy.org/wp-content/uploads/2022/01/RiA_54-768x512.png')`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundBlendMode: 'overlay',
+    backgroundColor: 'rgba(255,255,255,0.6)' // 80% transparency
+  }}
     >
-      <div className="max-w-7xl mt-3 mx-auto px-6">
+      <div className="max-w-7xl mt-3 mx-auto px-6 py-10">
         {/* Section Heading */}
-        <p className="text-sky-500 font-semibold tracking-wide">
-          ROBOTICS IN ACADEMICS
-        </p>
-        <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-12">
+       
+        <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-12">
           Our Program Highlights
         </h2>
 
@@ -107,7 +113,7 @@ const ProgramHighlights = () => {
           {highlights.map((item, index) => (
             <div
               key={index}
-              className="group bg-white border border-gray-200 rounded-2xl shadow-sm p-8 transition-all duration-300 hover:border-sky-400 hover:shadow-[0_8px_30px_rgba(0,183,255,0.15)] hover:scale-[1.02] cursor-pointer"
+              className="group bg-white border border-gray-200 rounded-2xl shadow-sm p-8 transition-all duration-300 hover:border-sky-400 hover:shadow-[0_8px_30px_rgba(0,183,255,0.15)] hover:scale-[1.02]"
             >
               <div className="flex flex-col items-center text-center">
                 {/* Icon Circle */}

@@ -12,7 +12,7 @@ const IMAGES = [
   { src: ftc1, alt: "FTC Competition - Team Presentation" },
   { src: ftc2, alt: "FTC Competition - Students with Robot" },
   { src: ftc3, alt: "FTC Arena Performance" },
-//   { src: ftc4, alt: "FTC Robotics Demonstration" },
+  //   { src: ftc4, alt: "FTC Robotics Demonstration" },
 ];
 
 export default function FTC() {
@@ -61,7 +61,7 @@ export default function FTC() {
     <main className="bg-white min-h-screen">
       {/* Page Header */}
       <section className="">
-        <div className="max-w-7xl mx-auto ">
+        <div className="">
           <SectionHeader
             title="First Tech Challenge (FTC)"
             subtitle="We, Soham Academy (#24067), made our debut in the First Tech Challenge (FTC), joining a vibrant community of innovators from India, Kazakhstan, and Sri Lanka! 
@@ -71,8 +71,9 @@ export default function FTC() {
       </section>
 
       {/* FTC Gallery */}
-      <section className="">
-        <div className="max-w-7xl mx-auto px-15 ">
+      {/* FTC Gallery */}
+      <section className="pt-12 ">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {IMAGES.map((img, i) => (
               <div
@@ -98,7 +99,7 @@ export default function FTC() {
       {/* Fullscreen Modal */}
       {index >= 0 && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
           onClick={(e) => e.target === e.currentTarget && close()}
         >
           {/* Buttons */}
@@ -154,7 +155,7 @@ export default function FTC() {
           </div>
 
           {/* Caption */}
-          <p className="absolute bottom-6 text-white text-sm text-center w-full px-4">
+          <p className="absolute text-white text-sm text-center w-full px-4">
             {IMAGES[index].alt}
           </p>
         </div>

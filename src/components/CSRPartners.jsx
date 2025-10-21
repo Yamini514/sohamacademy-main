@@ -33,32 +33,69 @@ export default function CSRPartners({ partners = null, className = "" }) {
   ];
 
   const list = partners ?? defaultPartners;
+  const extendedList = [...list, ...list]; // duplicate for infinite scroll
 
   return (
-    <section className={`py-12 bg-white ${className}`} aria-label="CSR Partners">
-      <div className="max-w-7xl mx-auto px-6">
-        <h3 className="text-center text-2xl md:text-3xl font-extrabold text-gray-900 mb-8">CSR Partners</h3>
+    <section
+      className={`relative ${className} overflow-hidden`}
+      aria-label="CSR Partners"
+      style={{
+        backgroundImage:
+          "url(https://ria.sohamacademy.org/wp-content/uploads/2025/01/Snapinst.app_469069816_1389351408615023_4733626418636343444_n_1080-1024x576.jpg)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      {/* Semi-transparent overlay */}
+      <div className="absolute inset-0 bg-white/80 z-0"></div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 px-8">
-          {list.map((p) => (
-            <div
-              key={p.id}
-              className="flex flex-col items-center justify-center gap-3 rounded-xl border border-gray-100 bg-white p-6 text-center transition-shadow duration-200 hover:shadow-md hover:border-sky-200 focus-within:shadow-md"
-              tabIndex={0}
-              role="button"
-              aria-label={p.name}
-            >
-              <div className="w-20 h-20 flex items-center justify-center">
-                {/* logo: use <img> if available else fallback icon */}
-                {p.logo ? (
-                  <img src={p.logo} alt={p.name} className="max-h-12 object-contain" loading="lazy" />
-                ) : (
-                  <div className="w-12 h-12 rounded-md bg-sky-50" />
-                )}
+      {/* Animation styles */}
+      <style>
+        {`
+          @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-scroll {
+            display: flex;
+            width: max-content;
+            animation: scroll 40s linear infinite;
+          }
+          .pause-on-hover:hover {
+            animation-play-state: paused;
+          }
+        `}
+      </style>
+
+      {/* Content */}
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-10 flex flex-col items-center z-10">
+        <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-10 text-center">
+          CSR Partners
+        </h3>
+
+        {/* Carousel */}
+        <div className="overflow-hidden w-full">
+          <div className="animate-scroll pause-on-hover flex items-center gap-12">
+            {extendedList.map((p, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-center justify-center min-w-[140px]"
+              >
+                <div className="h-20 w-36 md:h-24 md:w-40 flex items-center justify-center">
+                  <img
+                    src={p.logo}
+                    alt={p.name}
+                    className="max-h-16 md:max-h-20 w-auto object-contain"
+                    loading="lazy"
+                  />
+                </div>
+                <span className="mt-2 text-sm md:text-base font-medium text-gray-800">
+                  {p.name}
+                </span>
               </div>
-              <div className="text-sm font-medium text-gray-800">{p.name}</div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
