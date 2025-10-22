@@ -9,7 +9,7 @@ export default function HeroAbout() {
 
   return (
     <section
-      className="relative w-full min-h-[85vh] flex items-center justify-center text-center bg-cover bg-center"
+      className="relative w-full min-h-[90vh] flex items-center justify-center text-center bg-cover bg-center"
       style={{ backgroundImage: `url(${bgAbout})` }}
       aria-label="About hero"
     >

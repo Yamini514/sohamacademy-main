@@ -65,7 +65,7 @@ export default function HistorySection() {
   const { title, heading, paragraphs, images } = historyContent;
 
   return (
-    <section id="history" className="bg-white mt-3 sm:mt-3">
+    <section id="history" className="bg-white mt-3 py-10 sm:mt-3">
       <div >
           <SectionHeader title={title} />
         </div>
