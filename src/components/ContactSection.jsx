@@ -44,7 +44,6 @@ function ContactSection() {
       setLoading(false);
     }
   };
-
   const contactInfo = [
     { key: "email", icon: <Mail className="w-5 h-5 text-brand-cyan" />, title: "Write to us", content: <a href="mailto:admin@sohamacademy.org" className="text-brand-cyan">admin@sohamacademy.org</a> },
     { key: "phone", icon: <Phone className="w-5 h-5 text-brand-cyan" />, title: "Call us at", content: <a href="tel:+918099643298" className="text-brand-cyan">+91 80996 43298</a> },
