@@ -110,13 +110,15 @@ const result = await api.get("dashboard_stats", { auth: false });
       duration: 1100,
       icon: <Map className="w-6 h-6" />,
     },
-    {
-      id: "projects",
-      label: "Creative Projects",
-      value: resolved.Projects ?? resolved.projects ?? resolved.CreativeProjects ?? 0,
-      duration: 1500,
-      icon: <Lightbulb className="w-6 h-6" />,
-    },
+    // {
+    //   id: "projects",
+    //   label: "Creative Projects",
+    //   value: resolved.Projects ?? resolved.projects ?? resolved.CreativeProjects ?? 0,
+    //   duration: 1500,
+    //   icon: <Lightbulb className="w-6 h-6" />,
+    // },
+      { id: "projects", label: "Creative Projects", value: 6141, duration: 1500, icon: <Lightbulb className="w-6 h-6" /> },
+
     {
       id: "years",
       label: "Years of Excellence",
