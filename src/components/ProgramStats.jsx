@@ -243,26 +243,29 @@ const result = await api.get("dashboard_stats", { auth: false });
                   onFocus={() => handleFocus(itm.id)}
                   onBlur={handleBlur}
                   className={`flex flex-col items-center justify-center text-center bg-white border rounded-xl p-6 transition-all duration-300 cursor-default
-                    ${isActive ? "border-sky-400 shadow-lg scale-[1.03]" : "border-gray-100 hover:border-sky-300 hover:shadow-md"}
+                    ${isActive
+                    ? "border-sky-400 shadow-[0_12px_30px_rgba(0,183,255,0.12)] scale-[1.02]"
+                    : "border-gray-300 hover:border-sky-300 hover:shadow-md"
+                  }
                   `}
                 >
                   <div
-                    className={`mb-3 inline-flex items-center justify-center w-10 h-10 rounded-full ${
-                      isActive ? "bg-white ring-2 ring-sky-200" : "bg-sky-50"
-                    }`}
+                    className={`mb-3 inline-flex items-center justify-center w-12 h-12 rounded-full ${isActive ? "bg-white ring-2 ring-sky-200" : "bg-sky-50"
+                    } drop-shadow-md`}
                   >
-                    <span className="text-sky-500">{itm.icon}</span>
+                    <span className={`${isActive ? "text-sky-500" : "text-sky-500"}`}>
+                    {React.cloneElement(itm.icon, { className: "w-6 h-6" })}
+                  </span>
                   </div>
-                  <div className="text-2xl md:text-3xl font-extrabold text-gray-900">
+                  <div className="text-2xl md:text-3xl font-extrabold leading-none text-gray-900">
                     {displayValue}
                   </div>
                   <div
-                    className={`mt-2 text-sm ${
-                      isActive ? "text-sky-600" : "text-gray-600"
+                  className={`mt-2 text-sm ${isActive ? "text-sky-600" : "text-gray-600"
                     }`}
-                  >
-                    {itm.label}
-                  </div>
+                >
+                  {itm.label}
+                </div>
                 </div>
               );
             })}
