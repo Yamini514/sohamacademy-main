@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { api } from "../store/api";
 
-function ContactSection() {
+export default function ContactSection() {
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -26,93 +26,207 @@ function ContactSection() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     if (!validateForm()) return;
-
     setLoading(true);
     setStatus(null);
 
     try {
-      // public endpoint: auth: false
+      // API call from your first code
       const res = await api.post("contacts", form, { auth: false });
       setStatus({ success: res?.message || "Message sent successfully!" });
       setForm({ name: "", phone: "", email: "", subject: "", message: "" });
     } catch (err) {
       console.error(err);
-      setStatus({ error: err.message || "Something went wrong. Please try again later." });
+      setStatus({
+        error:
+          err.message || "Something went wrong. Please try again later.",
+      });
     } finally {
       setLoading(false);
     }
   };
 
   const contactInfo = [
-    { key: "email", icon: <Mail className="w-5 h-5 text-brand-cyan" />, title: "Write to us", content: <a href="mailto:admin@sohamacademy.org" className="text-brand-cyan">admin@sohamacademy.org</a> },
-    { key: "phone", icon: <Phone className="w-5 h-5 text-brand-cyan" />, title: "Call us at", content: <a href="tel:+918099643298" className="text-brand-cyan">+91 80996 43298</a> },
-    { key: "addr", icon: <MapPin className="w-5 h-5 text-brand-cyan" />, title: "Soham Academy", content: <p className="text-gray-500">Bagh Amberpet, Hyderabad, Telangana</p> },
+    {
+      key: "email",
+      icon: <Mail className="w-5 h-5 text-brand-cyan" />,
+      title: "Mail Us at",
+      content: (
+        <a
+          href="mailto:admin@sohamacademy.org"
+          className="text-brand-cyan hover:text-sky-600 transition-colors"
+        >
+          admin@sohamacademy.org
+        </a>
+      ),
+    },
+    {
+      key: "phone",
+      icon: <Phone className="w-5 h-5 text-brand-cyan" />,
+      title: "Call Us on",
+      content: (
+        <a
+          href="tel:+918099643298"
+          className="text-brand-cyan hover:text-sky-600 transition-colors"
+        >
+          +91 80996 43298
+        </a>
+      ),
+    },
+    {
+      key: "addr",
+      icon: <MapPin className="w-5 h-5 text-brand-cyan" />,
+      title: "Soham Academy",
+      content: (
+        <a
+          href="https://www.google.com/maps/dir//2-2-186%2F18%2F6,+Ramakrishna+Nagar,+Amberpet,+Hyderabad,+Telangana+500013/@17.3968961,78.4381458,12z"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sky-600 hover:text-sky-600 transition-colors"
+        >
+          Bagh Amberpet, Hyderabad, Telangana
+        </a>
+      ),
+    },
   ];
 
   return (
-    <section className="bg-white" aria-label="Contact">
-      <div className="max-w-6xl mx-auto px-10 sm:px-2 lg:px-5">
-        <div className="grid md:grid-cols-2 gap-8 items-start">
+    <section
+      className="relative py-12"
+      aria-label="Contact"
+      style={{
+        backgroundImage:
+          "url('https://ria.sohamacademy.org/wp-content/uploads/2025/01/Snapinst.app_469204666_1514121172637631_4412047678977477125_n_1080-1024x576.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      {/* overlay */}
+      <div className="absolute inset-0 bg-white/20 backdrop-brightness-75"></div>
 
-          {/* Left */}
-          <div className="w-full sm:px-8 md:px-10 lg:px-2">
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-2">Want to work with us?</h3>
-            <p className="text-gray-500 mb-3 sm:mb-5 max-w-md sm:max-w-lg md:max-w-xl leading-relaxed">
-              You can reach out via the below mentioned details
-            </p>
-            <ul className="space-y-5 max-w-md sm:max-w-lg">
-              {contactInfo.map(({ key, icon, title, content }) => (
-                <li key={key} className="flex items-start gap-4">
-                  <span className="p-2 sm:p-3 rounded-full bg-sky-50 inline-flex items-center justify-center flex-shrink-0">{icon}</span>
-                  <div>
-                    <h4 className="font-semibold text-sm sm:text-base">{title}</h4>
-                    <div className="text-sm sm:text-base">{content}</div>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Right */}
-          <div className="bg-white border border-gray-100 rounded-xl p-4 sm:p-6 shadow-sm space-y-4">
-            {status?.error && <div className="p-2 mb-2 bg-red-100 text-red-700 rounded">{status.error}</div>}
-            {status?.success && <div className="p-2 mb-2 bg-green-100 text-green-700 rounded">{status.success}</div>}
-
+      <div className="relative max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+        <div className="bg-white rounded-3xl shadow-2xl p-10 sm:p-14 md:p-16">
+          <div className="grid md:grid-cols-2 gap-12 items-start">
+            {/* Left Side */}
             <div>
-              <label className="block text-sm font-medium mb-1">Name</label>
-              <input type="text" name="name" value={form.name} onChange={handleChange} className="w-full border rounded-md p-2 mb-2" />
+              <h5 className="text-2xl sm:text-2xl md:text-3xl font-bold mb-4 text-gray-900 leading-snug">
+                Looking for a similar program for your school or institution?
+              </h5>
+              <p className="text-gray-500 mb-8 max-w-lg leading-relaxed">
+                You can reach out via the below mentioned details.
+              </p>
+
+              <ul className="space-y-6 max-w-md sm:max-w-lg">
+                {contactInfo.map(({ key, icon, title, content }) => (
+                  <li key={key} className="flex items-center gap-4">
+                    <div className="w-12 h-12 flex items-center justify-center rounded-full border border-sky-400 bg-white shadow-sm">
+                      {React.cloneElement(icon, {
+                        className: "w-5 h-5 text-sky-500",
+                      })}
+                    </div>
+                    <div className="flex flex-col">
+                      <h4 className="font-semibold text-base text-gray-900">
+                        {title}
+                      </h4>
+                      <div className="text-base text-sky-500">{content}</div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium mb-1">Phone</label>
-              <input type="text" name="phone" value={form.phone} onChange={handleChange} className="w-full border rounded-md p-2 mb-2" />
-            </div>
+            {/* Right Side */}
+            <form
+              onSubmit={handleSubmit}
+              className="bg-white border border-gray-200 rounded-2xl p-8 shadow-md space-y-4"
+            >
+              {status?.error && (
+                <div className="p-2 bg-red-100 text-red-700 rounded">
+                  {status.error}
+                </div>
+              )}
+              {status?.success && (
+                <div className="p-2 bg-green-100 text-green-700 rounded">
+                  {status.success}
+                </div>
+              )}
 
-            <div>
-              <label className="block text-sm font-medium mb-1">Email *</label>
-              <input type="email" name="email" value={form.email} onChange={handleChange} required className="w-full border rounded-md p-2 mb-2" />
-            </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <label className="block">
+                  <span className="text-sm font-medium">Name</span>
+                  <input
+                    name="name"
+                    value={form.name}
+                    onChange={handleChange}
+                    className="mt-1 block w-full border border-gray-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-100"
+                    placeholder="Your name"
+                  />
+                </label>
 
-            <div>
-              <label className="block text-sm font-medium mb-1">Subject</label>
-              <input type="text" name="subject" value={form.subject} onChange={handleChange} className="w-full border rounded-md p-2 mb-2" />
-            </div>
+                <label className="block">
+                  <span className="text-sm font-medium">Phone</span>
+                  <input
+                    name="phone"
+                    value={form.phone}
+                    onChange={handleChange}
+                    className="mt-1 block w-full border border-gray-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-100"
+                    placeholder="Your phone number"
+                  />
+                </label>
+              </div>
 
-            <div>
-              <label className="block text-sm font-medium mb-1">Message *</label>
-              <textarea name="message" value={form.message} onChange={handleChange} required className="w-full border rounded-md p-2 mb-2" />
-            </div>
+              <label className="block">
+                <span className="text-sm font-medium">Email *</span>
+                <input
+                  name="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                  className="mt-1 block w-full border border-gray-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-100"
+                  placeholder="Your email address"
+                />
+              </label>
 
-            <button onClick={handleSubmit} disabled={loading} className="px-4 py-2 bg-blue-500 text-white rounded-md">
-              {loading ? "Submitting..." : "Submit"}
-            </button>
+              <label className="block">
+                <span className="text-sm font-medium">Subject</span>
+                <input
+                  name="subject"
+                  value={form.subject}
+                  onChange={handleChange}
+                  className="mt-1 block w-full border border-gray-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-100"
+                  placeholder="Subject of your inquiry"
+                />
+              </label>
+
+              <label className="block">
+                <span className="text-sm font-medium">Message *</span>
+                <textarea
+                  name="message"
+                  value={form.message}
+                  onChange={handleChange}
+                  required
+                  rows={6}
+                  className="mt-1 block w-full border border-gray-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-100"
+                  placeholder="Tell us about your requirements..."
+                />
+              </label>
+
+              <div className="flex justify-center">
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="px-4 py-2 bg-brand-cyan hover:bg-sky-600 text-white rounded-md font-medium text-sm transition-colors"
+                  style={{ backgroundColor: "var(--brand-cyan, #01C1F2)" }}
+                >
+                  {loading ? "Submitting..." : "Submit"}
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </section>
   );
 }
-
-export default ContactSection;
