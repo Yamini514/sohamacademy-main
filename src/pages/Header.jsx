@@ -7,7 +7,7 @@ export default function Header() {
   const navLinks = [
     { name: "Home", to: "/" },
     { name: "About Us", to: "/about" },
-    { name: "Dashboard", external: "https://soham-academy-ui.netlify.app/" },
+    { name: "Dashboard", external: "https://soham-api.fly.dev/" },
     { name: "Reports", to: "/reports" },
     { name: "FTC", to: "/ftc" },
     { name: "Contact", to: "/contact" },
