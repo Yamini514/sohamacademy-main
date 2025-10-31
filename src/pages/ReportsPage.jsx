@@ -1,17 +1,34 @@
-
 import React, { useEffect, useMemo, useState } from "react";
-import SectionHeader from "../components/SectionHeader"; 
+import SectionHeader from "../components/SectionHeader";
+import maImg from "../assets/ma.png";
+import areImg from "../assets/are.png";
+import activeReportImg from "../assets/activereport.png";
 
 const REPORTS = [
   {
     id: "annual-2024",
-    category: "Annual Report",
+    category: "Annual Activities Edition",
     title: "Soham Activities Report 2024-25",
     date: "March 2025",
-    thumb: "/reports/annual-2024-thumb.jpg",
-    pdf: "/reports/annual-2024.pdf",
+    thumb: activeReportImg,
+    pdf: "https://ria.sohamacademy.org/wp-content/uploads/2025/03/Soham-Activities-Report.pdf",
   },
-  
+  {
+    id: "exhibition-2025",
+    category: "Exhibition Special Editions",
+    title: "RiA 2nd Annual Robotics Exhibition - Special Edition",
+    date: "March 2025",
+    thumb: areImg,
+    pdf: "https://ria.sohamacademy.org/wp-content/uploads/2025/03/RiA-2nd-Annual-Robotics-Exhibition-Special-Edition.pdf",
+  },
+  {
+    id: "brochure-aug-2025",
+    category: "Monthly Editions",
+    title: "RiA Brochure - August 2025 Edition",
+    date: "August 2025",
+    thumb: maImg,
+    pdf: "https://ria.sohamacademy.org/wp-content/uploads/2025/08/RiA-Brochure-August-2025-Edition.pdf",
+  },
 ];
 
 const TABS = [
@@ -21,26 +38,25 @@ const TABS = [
 ];
 
 function IconView() {
+  // plus icon (used to open preview)
   return (
-    <svg className="w-5 h-5 text-sky-500" viewBox="0 0 24 24" fill="none">
+    <svg className="w-5 h-5 text-sky-500" viewBox="0 0 24 24" fill="none" aria-hidden>
       <path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
 function IconDownload() {
   return (
-    <svg className="w-5 h-5 text-sky-500" viewBox="0 0 24 24" fill="none">
+    <svg className="w-5 h-5 text-sky-500" viewBox="0 0 24 24" fill="none" aria-hidden>
       <path d="M12 3v13M5 14l7 7 7-7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
 
 export default function ReportsPage() {
-  
   const [activeTab, setActiveTab] = useState(TABS[2]);
   const [query, setQuery] = useState("");
   const [openPdf, setOpenPdf] = useState(null);
-
 
   useEffect(() => {
     const onKey = (e) => {
@@ -52,12 +68,13 @@ export default function ReportsPage() {
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return REPORTS.filter((r) => r.category === activeTab && (!q || r.title.toLowerCase().includes(q) || r.date.toLowerCase().includes(q)));
+    return REPORTS.filter(
+      (r) => r.category === activeTab && (!q || r.title.toLowerCase().includes(q) || r.date.toLowerCase().includes(q))
+    );
   }, [activeTab, query]);
 
   return (
-    <main className="bg-white min-h-screen ">
-
+    <main className="bg-white min-h-screen">
       <SectionHeader
         title="Reports & Publications"
         subtitle="Explore our comprehensive collection of reports, publications, and documentation showcasing our journey, achievements, and impact in robotics education across various schools and institutions."
@@ -72,10 +89,9 @@ export default function ReportsPage() {
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`px-2 bt-3 text-sm rounded-md transition ${active
-                      ? "bg-[#00B7FF] text-white shadow"
-                      : "bg-white text-gray-700 border border-transparent hover:border-slate-200"
-                    }`}
+                  className={`px-3 py-1 text-sm rounded-md transition ${
+                    active ? "bg-[#00B7FF] text-white shadow" : "bg-white text-gray-700 border border-transparent hover:border-slate-200"
+                  }`}
                   aria-pressed={active}
                 >
                   {tab}
@@ -85,16 +101,25 @@ export default function ReportsPage() {
           </div>
         </div>
       </div>
+
       <section className="max-w-7xl mx-auto px-6 py-2 text-center">
         <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2">{activeTab}</h2>
-        <p className="text-gray-500 mb-8">Comprehensive yearly reports covering all our activities and achievements</p>
+        <p className="text-gray-500 mb-6">Comprehensive yearly reports covering all our activities and achievements</p>
 
+        <div className="mb-6">
+          <input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search reports by title or date..."
+            className="max-w-md w-full mx-auto px-4 py-2 border rounded-md"
+            aria-label="Search reports"
+          />
+        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-8 justify-start items-start">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-start items-start">
           {filtered.length ? (
             filtered.map((r) => (
-              <article key={r.id} className="group bg-white border border-gray-100 rounded-xl overflow-hidden shadow-sm max-w-md">
-
+              <article key={r.id} className="group bg-white border border-gray-100 rounded-xl overflow-hidden shadow-sm max-w-md mx-auto">
                 <div className="relative h-52 overflow-hidden bg-slate-50">
                   <img
                     src={r.thumb}
@@ -106,9 +131,10 @@ export default function ReportsPage() {
                   {/* Hover overlay (View / Download) */}
                   <div className="absolute inset-0 flex items-start justify-between p-3 pointer-events-none">
                     <div className="pointer-events-auto opacity-0 group-hover:opacity-100 transition-opacity">
-                      {/* optional small icon placeholder */}
                       <div className="bg-white/80 p-2 rounded-md shadow">
-                        <svg className="w-5 h-5 text-gray-700" viewBox="0 0 24 24" fill="none"><path d="M3 7h18M3 12h18M3 17h18" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                        <svg className="w-5 h-5 text-gray-700" viewBox="0 0 24 24" fill="none" aria-hidden>
+                          <path d="M3 7h18M3 12h18M3 17h18" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
                       </div>
                     </div>
 
@@ -117,14 +143,18 @@ export default function ReportsPage() {
                         onClick={() => setOpenPdf(r.pdf)}
                         aria-label={`View ${r.title}`}
                         className="bg-white/95 p-2 rounded-full shadow hover:bg-white transition"
+                        title={`Preview ${r.title}`}
                       >
                         <IconView />
                       </button>
                       <a
                         href={r.pdf}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         download
                         aria-label={`Download ${r.title}`}
                         className="bg-white/95 p-2 rounded-full shadow hover:bg-white transition flex items-center justify-center"
+                        title={`Download ${r.title}`}
                       >
                         <IconDownload />
                       </a>
@@ -133,7 +163,7 @@ export default function ReportsPage() {
                 </div>
 
                 {/* Body */}
-                <div className="p-5">
+                <div className="p-5 text-left">
                   <div className="text-xs text-sky-500 font-medium mb-2">{r.category}</div>
                   <h3 className="text-lg font-semibold text-sky-600 hover:text-sky-700">{r.title}</h3>
                   <div className="mt-3 text-sm text-gray-400">{r.date}</div>
@@ -147,26 +177,37 @@ export default function ReportsPage() {
       </section>
 
       {/* PDF Modal (iframe) */}
-      {openPdf && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60" role="dialog" aria-modal="true">
-          <div className="absolute inset-0" onClick={() => setOpenPdf(null)} />
-          <div className="relative w-full max-w-5xl mx-4 bg-white rounded-lg overflow-hidden shadow-2xl">
-            <div className="flex items-center justify-between p-3 border-b border-gray-100">
-              <div className="text-sm text-gray-700">Preview</div>
-              <div className="flex items-center gap-3">
-                <a href={openPdf} download className="text-sm text-sky-500 px-3 py-1 rounded-md hover:bg-slate-50">Download</a>
-                <button onClick={() => setOpenPdf(null)} aria-label="Close preview" className="p-2 rounded-md hover:bg-slate-50">
-                  <svg className="w-5 h-5 text-gray-700" viewBox="0 0 24 24" fill="none"><path d="M6 18L18 6M6 6l12 12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                </button>
-              </div>
-            </div>
-
-            <div className="aspect-[4/3]">
-              <iframe src={openPdf} title="Report Preview" className="w-full h-full" frameBorder="0" />
-            </div>
-          </div>
+    {openPdf && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60" role="dialog" aria-modal="true">
+    <div className="absolute inset-0" onClick={() => setOpenPdf(null)} />
+    <div className="relative w-full max-w-[95vw] max-h-[95vh] mx-4 bg-white rounded-lg overflow-hidden shadow-2xl">
+      <div className="flex items-center justify-between p-3 border-b border-gray-100">
+        <div className="text-sm text-gray-700">Preview</div>
+        <div className="flex items-center gap-3">
+          <a href={openPdf} target="_blank" rel="noopener noreferrer" download className="text-sm text-sky-500 px-3 py-1 rounded-md hover:bg-slate-50">
+            Download
+          </a>
+          <button onClick={() => setOpenPdf(null)} aria-label="Close preview" className="p-2 rounded-md hover:bg-slate-50">
+            <svg className="w-5 h-5 text-gray-700" viewBox="0 0 24 24" fill="none" aria-hidden>
+              <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
         </div>
-      )}
+      </div>
+
+      {/* Make iframe fill modal and allow large height */}
+      <div className="w-full h-[84vh]">
+        <iframe
+          src={openPdf}
+          title="Report Preview"
+          className="w-full h-full"
+          frameBorder="0"
+        />
+      </div>
+    </div>
+  </div>
+)}
+
     </main>
   );
 }
