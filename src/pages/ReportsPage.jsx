@@ -130,23 +130,9 @@ export default function ReportsPage() {
 
                   {/* Hover overlay (View / Download) */}
                   <div className="absolute inset-0 flex items-start justify-between p-3 pointer-events-none">
-                    <div className="pointer-events-auto opacity-0 group-hover:opacity-100 transition-opacity">
-                      <div className="bg-white/80 p-2 rounded-md shadow">
-                        <svg className="w-5 h-5 text-gray-700" viewBox="0 0 24 24" fill="none" aria-hidden>
-                          <path d="M3 7h18M3 12h18M3 17h18" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </div>
-                    </div>
-
+                    
                     <div className="flex gap-3 pointer-events-auto opacity-0 group-hover:opacity-100 transition-opacity">
-                      <button
-                        onClick={() => setOpenPdf(r.pdf)}
-                        aria-label={`View ${r.title}`}
-                        className="bg-white/95 p-2 rounded-full shadow hover:bg-white transition"
-                        title={`Preview ${r.title}`}
-                      >
-                        <IconView />
-                      </button>
+
                       <a
                         href={r.pdf}
                         target="_blank"
