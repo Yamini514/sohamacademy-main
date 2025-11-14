@@ -82,20 +82,36 @@ const result = await api.get("dashboard_stats", { auth: false });
   const resolved = statsData || {};
   const items = [
     {
+      id: "schools",
+      label: "Schools Assisted",
+      value: resolved.Schools,
+      duration: 1400,
+      icon: <Home className="w-6 h-6" />,
+    },
+    {
       id: "students",
       label: "Students Trained",
       // try multiple possible keys your backend might return
-      value: resolved.Students ?? resolved.students ?? resolved.TotalStudents ?? 0,
+      value: resolved.School_Students,
       duration: 1700,
       icon: <Users className="w-6 h-6" />,
     },
     {
-      id: "schools",
-      label: "Schools Assisted",
-      value: resolved.Schools ?? resolved.schools ?? 0,
+      id: "Colleges",
+      label: "Colleges Assisted",
+      value: resolved.Colleges,
       duration: 1400,
       icon: <Home className="w-6 h-6" />,
     },
+    {
+      id: "College Students",
+      label: "Colleges Trained",
+      // try multiple possible keys your backend might return
+      value: resolved.College_Students,
+      duration: 1700,
+      icon: <Users className="w-6 h-6" />,
+    },
+    {id:"innovtions", label:"Innovations", value:resolved.Innovations,duration:1600,icon:<Lightbulb className="w-6 h-6"/>},
     {
       id: "states",
       label: "States Reached",
@@ -110,43 +126,34 @@ const result = await api.get("dashboard_stats", { auth: false });
       duration: 1100,
       icon: <Map className="w-6 h-6" />,
     },
-    // {
-    //   id: "projects",
-    //   label: "Creative Projects",
-    //   value: resolved.Projects ?? resolved.projects ?? resolved.CreativeProjects ?? 0,
-    //   duration: 1500,
-    //   icon: <Lightbulb className="w-6 h-6" />,
-    // },
+    
       { id: "projects", label: "Creative Projects", value: 6141, duration: 1500, icon: <Lightbulb className="w-6 h-6" /> },
 
     {
       id: "years",
       label: "Years of Excellence",
-      // if backend gives string like "5+" keep it
       value: resolved.Years ?? resolved.years ?? "5+",
       duration: 700,
       icon: <Calendar className="w-6 h-6" />,
     },
   ];
  
-  // ----- initialize counts (zero or immediate for non-numeric values) when statsData arrives -----
+
   useEffect(() => {
     if (!statsLoaded) return;
     const initialCounts = items.map((itm) => {
       const parsed = parseIncoming(itm.value);
-      // for values that are non-numeric (like "5+"), store 0 for animation but preserve raw label
+      
       return parsed.num || 0;
     });
     const initialLabels = items.map((itm) => {
       const parsed = parseIncoming(itm.value);
       return parsed.raw ?? "";
     });
-    setCounts(initialCounts.map(() => 0)); // start from 0 for animation
+    setCounts(initialCounts.map(() => 0)); 
     setLabels(initialLabels);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [statsLoaded, /*items intentionally not in deps to avoid frequent reset*/]);
- 
-  // ----- animate counters when component visible AND after stats loaded -----
+
   useEffect(() => {
     if (!visible || !statsLoaded) return;
  
@@ -188,22 +195,17 @@ const result = await api.get("dashboard_stats", { auth: false });
     return () => {
       rafIds.forEach((id) => id && cancelAnimationFrame(id));
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible, statsLoaded]);
  
   const handleEnter = (id) => setHoveredId(id);
   const handleLeave = () => setHoveredId(null);
   const handleFocus = (id) => setFocusedId(id);
   const handleBlur = () => setFocusedId(null);
- 
-  // ----- utility for rendering display value (handles suffix like "+") -----
   const displayFor = (idx, rawValue) => {
     const parsed = parseIncoming(rawValue);
     if (!parsed.raw || String(parsed.raw).match(/^[\d.,]+$/)) {
-      // purely numeric -> use animated counts
       return formatNumber(counts[idx] ?? 0);
     } else {
-      // contains non-digit (like "5+"), show raw text but animate numeric portion if possible
       if (parsed.num) {
         const animated = counts[idx] ?? 0;
         const suffix = parsed.suffix || (String(rawValue).trim().endsWith("+") ? "+" : "");
@@ -213,66 +215,104 @@ const result = await api.get("dashboard_stats", { auth: false });
     }
   };
  
-  return (
-    <section
-      ref={containerRef}
-      className={`py-10 bg-white ${className}`}
-      aria-label="Program statistics"
-    >
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-10">
-          <h2 className="mt-3 text-3xl md:text-4xl font-bold text-gray-900 px-8">
-            Our Track Record of Robotics in Academics Program
-          </h2>
-        </div>
- 
-        {loading ? (
-          <div className="text-center text-gray-500">Loading stats...</div>
-        ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 items-stretch px-4">
-            {items.map((itm, idx) => {
-              const displayValue = displayFor(idx, itm.value);
-              const isActive = hoveredId === itm.id || focusedId === itm.id;
+ return (
+  <section
+    ref={containerRef}
+    className={`py-10 bg-white overflow-hidden ${className}`}
+    aria-label="Program statistics"
+  >
+    <style>
+      {`
+        @keyframes scrollX {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .scroll-wrapper {
+          display: flex;
+          width: max-content;
+          animation: scrollX 45s linear infinite;
+        }
+        .scroll-wrapper:hover {
+          animation-play-state: paused;
+        }
+      `}
+    </style>
+
+    <div className="max-w-7xl mx-auto px-6">
+      <div className="text-center mb-10">
+        <h2 className="mt-3 text-3xl md:text-4xl font-bold text-gray-900 px-8">
+          Our Track Record of Robotics in Academics Program
+        </h2>
+      </div>
+
+      {loading ? (
+        <div className="text-center text-gray-500">Loading stats...</div>
+      ) : (
+        <div className=" w-full">
+          <div className="scroll-wrapper gap-6">
+            {[...items, ...items].map((itm, idx) => {
+              const displayValue = displayFor(idx % items.length, itm.value);
+              const activeId = idx < items.length ? itm.id : `${itm.id}-dup`;
+              const isActive =
+                hoveredId === activeId || focusedId === activeId;
+
               return (
                 <div
-                  key={itm.id}
+                  key={activeId}
                   role="button"
                   tabIndex={0}
-                  onMouseEnter={() => handleEnter(itm.id)}
+                  onMouseEnter={() => handleEnter(activeId)}
                   onMouseLeave={handleLeave}
-                  onFocus={() => handleFocus(itm.id)}
+                  onFocus={() => handleFocus(activeId)}
                   onBlur={handleBlur}
-                  className={`flex flex-col items-center justify-center text-center bg-white border rounded-xl p-6 transition-all duration-300 cursor-default
-                    ${isActive
-                    ? "border-sky-400 shadow-[0_12px_30px_rgba(0,183,255,0.12)] scale-[1.02]"
-                    : "border-gray-300 hover:border-sky-300 hover:shadow-md"
-                  }
+                  className={`
+                    flex-shrink-0 flex flex-col items-center justify-center 
+                    text-center bg-white border rounded-xl p-6 
+                    transition-all duration-300 cursor-default
+                    w-[180px] h-[180px]
+                    ${
+                      isActive
+                        ? "border-sky-400 shadow-[0_12px_30px_rgba(0,183,255,0.12)] scale-[1.05]"
+                        : "border-gray-300 hover:border-sky-300 hover:shadow-md"
+                    }
                   `}
                 >
                   <div
-                    className={`mb-3 inline-flex items-center justify-center w-12 h-12 rounded-full ${isActive ? "bg-white ring-2 ring-sky-200" : "bg-sky-50"
-                    } drop-shadow-md`}
+                    className={`
+                      mb-3 inline-flex items-center justify-center 
+                      w-12 h-12 rounded-full drop-shadow-md
+                      ${
+                        isActive
+                          ? "bg-white ring-2 ring-sky-200"
+                          : "bg-sky-50"
+                      }
+                    `}
                   >
-                    <span className={`${isActive ? "text-sky-500" : "text-sky-500"}`}>
-                    {React.cloneElement(itm.icon, { className: "w-6 h-6" })}
-                  </span>
+                    <span className="text-sky-500">
+                      {React.cloneElement(itm.icon, { className: "w-6 h-6" })}
+                    </span>
                   </div>
+
                   <div className="text-2xl md:text-3xl font-extrabold leading-none text-gray-900">
                     {displayValue}
                   </div>
+
                   <div
-                  className={`mt-2 text-sm ${isActive ? "text-sky-600" : "text-gray-600"
+                    className={`mt-2 text-sm ${
+                      isActive ? "text-sky-600" : "text-gray-600"
                     }`}
-                >
-                  {itm.label}
-                </div>
+                  >
+                    {itm.label}
+                  </div>
                 </div>
               );
             })}
           </div>
-        )}
-      </div>
-    </section>
-  );
+        </div>
+      )}
+    </div>
+  </section>
+);
+
 }
  
