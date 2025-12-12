@@ -58,10 +58,6 @@ export default function ReportsPage() {
   const [reports, setReports] = useState([]);
   const [loading, setLoading] = useState(true);
   const [imageErrors, setImageErrors] = useState({});
-
-  // ============================
-  // FETCH REPORTS FROM PUBLIC API
-  // ============================
   useEffect(() => {
     const fetchReports = async () => {
       try {
@@ -73,10 +69,12 @@ export default function ReportsPage() {
             id: r.id,
             category: convertType(r.report_type),
             title: r.report_name,
-            date: `${r.month || ""}-${r.year || ""}`.replace(/^-|-$/g, "") || "N/A",
-            thumb: r.thumb_url, // Use thumbnail from backend
+            date:
+              `${r.month || ""}-${r.year || ""}`.replace(/^-|-$/g, "") || "N/A",
+            thumb: r.thumb_url,
             pdf: r.file_url,
           }));
+          console.log("Fetched reports:", formatted);
 
           setReports(formatted);
         }
@@ -107,9 +105,6 @@ export default function ReportsPage() {
     }));
   };
 
-  // ============================
-  // FILTER BASED ON TAB + SEARCH
-  // ============================
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return reports.filter(
@@ -120,10 +115,6 @@ export default function ReportsPage() {
           r.date.toLowerCase().includes(q))
     );
   }, [activeTab, query, reports]);
-
-  // ============================
-  // RENDER UI
-  // ============================
   return (
     <main className="bg-white min-h-screen">
       <SectionHeader
@@ -188,8 +179,8 @@ export default function ReportsPage() {
                   {/* Thumbnail */}
                   <div className="relative h-52 overflow-hidden bg-slate-50">
                     <img
-                      src={imageErrors[r.id] || !r.thumb ? maImg : r.thumb}
-                      alt={r.title}
+                      src={r.thumb}
+                      alt={r.report_name}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       loading="lazy"
                       onError={() => handleImageError(r.id)}
@@ -197,7 +188,7 @@ export default function ReportsPage() {
 
                     {/* Overlay */}
                     <div className="absolute inset-0 flex justify-between p-3 opacity-0 group-hover:opacity-100 pointer-events-none transition">
-                      <div className="pointer-events-auto">
+                      {/* <div className="pointer-events-auto">
                         <div className="bg-white/80 p-2 rounded-md shadow">
                           <svg
                             className="w-5 h-5 text-gray-700"
@@ -210,28 +201,27 @@ export default function ReportsPage() {
                             />
                           </svg>
                         </div>
-                      </div>
+                      </div> */}
 
-                      <div className="flex gap-3 pointer-events-auto opacity-0 group-hover:opacity-100 transition-opacity">
-                        <button
-                          onClick={() => setOpenPdf(r.pdf)}
-                          aria-label={`View ${r.title}`}
-                          className="bg-white/95 p-2 rounded-full shadow hover:bg-white transition"
-                          title={`Preview ${r.title}`}
-                        >
-                          <IconView />
-                        </button>
-                        <a
-                          href={r.pdf}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          download
-                          aria-label={`Download ${r.title}`}
-                          className="bg-white/95 p-2 rounded-full shadow hover:bg-white transition flex items-center justify-center"
-                          title={`Download ${r.title}`}
-                        >
-                          <IconDownload />
-                        </a>
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition flex items-start justify-end p-3 opacity-0 group-hover:opacity-100">
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() => setOpenPdf(r.pdf)}
+                            className="bg-white/95 p-2 rounded-full shadow hover:bg-white"
+                          >
+                            <IconView />
+                          </button>
+
+                          <a
+                            href={r.pdf}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            download
+                            className="bg-white/95 p-2 rounded-full shadow hover:bg-white"
+                          >
+                            <IconDownload />
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -244,7 +234,7 @@ export default function ReportsPage() {
                     <h3 className="text-lg font-semibold text-sky-600">
                       {r.title}
                     </h3>
-                    <div className="mt-3 text-sm text-gray-400">{r.date}</div>
+                    
                   </div>
                 </article>
               ))
@@ -260,10 +250,7 @@ export default function ReportsPage() {
       {/* PDF Preview Modal */}
       {openPdf && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
-          <div
-            className="absolute inset-0"
-            onClick={() => setOpenPdf(null)}
-          />
+          <div className="absolute inset-0" onClick={() => setOpenPdf(null)} />
           <div className="relative bg-white rounded-lg w-[95vw] max-h-[95vh] shadow-lg overflow-hidden">
             <div className="flex justify-between p-3 border-b">
               <span className="text-sm text-gray-700">Preview</span>
