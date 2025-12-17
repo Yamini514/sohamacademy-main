@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
 import SectionHeader from "../components/SectionHeader";
-import maImg from "../assets/ma.png"; // fallback only
 import { api } from "../store/api";
 
 const TABS = [
@@ -158,7 +157,7 @@ export default function ReportsPage() {
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search reports by title or date..."
+            placeholder="Search reports by title..."
             className="max-w-md w-full mx-auto px-4 py-2 border rounded-md"
           />
         </div>
@@ -187,7 +186,7 @@ export default function ReportsPage() {
                     />
 
                     {/* Overlay */}
-                    <div className="absolute inset-0 flex justify-between p-3 opacity-0 group-hover:opacity-100 pointer-events-none transition">
+                    <div className="absolute inset-0 flex justify-between p-3 opacity-0 group-hover:opacity-100 pointer-events-auto transition">
                       {/* <div className="pointer-events-auto">
                         <div className="bg-white/80 p-2 rounded-md shadow">
                           <svg
@@ -207,20 +206,17 @@ export default function ReportsPage() {
                         <div className="flex gap-2">
                           <button
                             onClick={() => setOpenPdf(r.pdf)}
-                            className="bg-white/95 p-2 rounded-full shadow hover:bg-white"
+                            className="bg-white/95 p-2 rounded-full shadow hover:bg-white cursor-pointer"
                           >
                             <IconView />
                           </button>
 
-                          <a
-                            href={r.pdf}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            download
-                            className="bg-white/95 p-2 rounded-full shadow hover:bg-white"
+                          <button
+                            onClick={() => window.open(r.pdf, "_blank")}
+                            className="bg-white/95 p-2 rounded-full shadow hover:bg-white cursor-pointer"
                           >
                             <IconDownload />
-                          </a>
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -234,7 +230,6 @@ export default function ReportsPage() {
                     <h3 className="text-lg font-semibold text-sky-600">
                       {r.title}
                     </h3>
-                    
                   </div>
                 </article>
               ))
