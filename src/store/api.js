@@ -1,6 +1,6 @@
 // store/api.js
 
-export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:9292/api/";
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 // Ensure URL is correctly concatenated
 const buildUrl = (url) => `${API_BASE_URL.replace(/\/$/, "")}/${url.replace(/^\//, "")}`;

@@ -111,7 +111,7 @@ const result = await api.get("dashboard_stats", { auth: false });
       duration: 1700,
       icon: <Users className="w-6 h-6" />,
     },
-    {id:"innovtions", label:"Innovations", value:resolved.Innovations,duration:1600,icon:<Lightbulb className="w-6 h-6"/>},
+    {id:"innovtions", label:"Creative Projects", value:resolved.Innovations,duration:1600,icon:<Lightbulb className="w-6 h-6"/>},
     {
       id: "states",
       label: "States Reached",
@@ -126,9 +126,6 @@ const result = await api.get("dashboard_stats", { auth: false });
       duration: 1100,
       icon: <Map className="w-6 h-6" />,
     },
-    
-      { id: "projects", label: "Creative Projects", value: 6141, duration: 1500, icon: <Lightbulb className="w-6 h-6" /> },
-
     {
       id: "years",
       label: "Years of Excellence",

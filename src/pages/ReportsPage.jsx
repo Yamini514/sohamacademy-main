@@ -4,8 +4,10 @@ import { api } from "../store/api";
 
 const TABS = [
   "Monthly Editions",
-  "Exhibition Special Editions",
-  "Annual Activities Edition",
+  "Distribution Editions",
+  "Sponsor Editions",
+  "Exhibition Editions",
+  "Annual Editions",
 ];
 
 // Convert backend types → frontend tab names
@@ -14,9 +16,13 @@ function convertType(type) {
     case "Monthly":
       return "Monthly Editions";
     case "Exhibition":
-      return "Exhibition Special Editions";
+      return "Exhibition Editions";
     case "Annual":
-      return "Annual Activities Edition";
+      return "Annual Editions";
+    case "Distribution":
+      return "Distribution Editions";
+    case "Sponsor":
+      return "Sponsor Editions";
     default:
       return "Others";
   }
@@ -52,6 +58,8 @@ function IconDownload() {
 
 export default function ReportsPage() {
   const [activeTab, setActiveTab] = useState(TABS[0]);
+  const [globalQuery, setGlobalQuery] = useState("");
+
   const [query, setQuery] = useState("");
   const [openPdf, setOpenPdf] = useState(null);
   const [reports, setReports] = useState([]);
@@ -62,6 +70,7 @@ export default function ReportsPage() {
       try {
         setLoading(true);
         const res = await api.get("reports", { auth: false });
+        console.log("API response:", res);
 
         if (res?.data) {
           const formatted = res.data.map((r) => ({
@@ -104,25 +113,67 @@ export default function ReportsPage() {
     }));
   };
 
+  const globalFiltered = useMemo(() => {
+    const q = globalQuery.trim().toLowerCase();
+    if (!q) return [];
+
+    return reports.filter((r) => {
+      return (
+        (r.title || "").toLowerCase().includes(q) ||
+        (r.date || "").toLowerCase().includes(q) ||
+        (r.category || "").toLowerCase().includes(q)
+      );
+    });
+  }, [globalQuery, reports]);
+  useEffect(() => {
+    const q = globalQuery.trim();
+    if (!q) return;
+
+    // pick first matched report and set active tab to its category
+    const first = globalFiltered[0];
+    if (first?.category && first.category !== activeTab) {
+      setActiveTab(first.category);
+    }
+  }, [globalQuery, globalFiltered, activeTab]);
+
   const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    return reports.filter(
-      (r) =>
-        r.category === activeTab &&
-        (!q ||
-          r.title.toLowerCase().includes(q) ||
-          r.date.toLowerCase().includes(q))
-    );
-  }, [activeTab, query, reports]);
+    const gq = globalQuery.trim().toLowerCase();
+    const tq = query.trim().toLowerCase();
+
+    // ✅ If global search is active, filter current tab using GLOBAL query
+    const qToUse = gq || tq;
+
+    return reports.filter((r) => {
+      if (r.category !== activeTab) return false;
+      if (!qToUse) return true;
+
+      return (
+        (r.title || "").toLowerCase().includes(qToUse) ||
+        (r.date || "").toLowerCase().includes(qToUse) ||
+        (r.category || "").toLowerCase().includes(qToUse)
+      );
+    });
+  }, [reports, activeTab, query, globalQuery]);
+
   return (
     <main className="bg-white min-h-screen">
       <SectionHeader
         title="Reports & Publications"
-        subtitle="Explore our comprehensive collection of reports, publications, documenting our journey & achievements."
+        subtitle="Explore our comprehensive collec
+        tion of reports, publications, documenting our journey & achievements."
       />
 
+      <div className="max-w-7xl mx-auto px-6 pt-6 flex justify-end">
+        <input
+          value={globalQuery}
+          onChange={(e) => setGlobalQuery(e.target.value)}
+          placeholder="Global search across all reports..."
+          className="w-full max-w-md px-4 py-2  border rounded-md"
+        />
+      </div>
+
       {/* TABS */}
-      <div className="bg-slate-100">
+      <div className="bg-slate-100 py-3 mt-6 gap-1">
         <div className="max-w-7xl mx-auto px-6 py-6 flex justify-center">
           <div className="inline-flex gap-3 flex-wrap justify-center">
             {TABS.map((tab) => {
@@ -152,15 +203,7 @@ export default function ReportsPage() {
         </h2>
         <p className="text-gray-500 mb-6">Browse through the latest reports</p>
 
-        {/* SEARCH */}
-        <div className="mb-6">
-          <input
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search reports by title..."
-            className="max-w-md w-full mx-auto px-4 py-2 border rounded-md"
-          />
-        </div>
+        
 
         {/* LIST */}
         {loading ? (

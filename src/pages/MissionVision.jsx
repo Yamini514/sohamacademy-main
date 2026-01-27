@@ -14,6 +14,24 @@ const PROGRAMS = [
   "Emerging Technologies",
   "Soham Career Guidance",
 ];
+const CERTIFICATIONS = [
+  {
+    title: "Trust",
+    code: "TG/73/IV/2017",
+  },
+  {
+    title: "12A",
+    code: "AATTS1503M23HY01",
+  },
+  {
+    title: "80G",
+    code: "AATTS1503M23HY02",
+  },
+  {
+    title: "FCRA",
+    code: "368140144",
+  },
+];
 
 function chunkArray(arr, n) {
   const out = Array.from({ length: n }, () => []);
@@ -28,9 +46,7 @@ export default function MissionVision() {
     <section id="mission" className="bg-white py-4">
       <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16">
         {/* Section heading */}
-        <header className="text-center mb-6">
-         
-        </header>
+        <header className="text-center mb-6"></header>
 
         <FadeUp>
           <article
@@ -54,8 +70,8 @@ export default function MissionVision() {
 
             {/* Description */}
             <p className="text-[var(--color-text,#6b7280)] text-base md:text-lg leading-relaxed max-w-4xl mx-auto text-center mb-8">
-              It is our mission to complement the efforts of the schools in doing
-              what they are unable to do and in teaching what they are not
+              It is our mission to complement the efforts of the schools in
+              doing what they are unable to do and in teaching what they are not
               equipped to teach.
             </p>
 
@@ -80,22 +96,33 @@ export default function MissionVision() {
 
             {/* Closing line */}
             <p className="text-[var(--color-text,#9ca3af)] text-sm leading-relaxed mt-8 max-w-3xl mx-auto text-center">
-              Across all programs being rolled out, children are at the center and
-              the driving force. We unlock the potential of thousands of children
-              by giving them access to high-impact educational experiences.
+              Across all programs being rolled out, children are at the center
+              and the driving force. We unlock the potential of thousands of
+              children by giving them access to high-impact educational
+              experiences.
             </p>
 
             {/* Certifications */}
-            <div className="flex flex-wrap justify-center gap-4 mt-6" aria-hidden="false">
-              <span className="px-4 py-2 text-sm font-medium bg-green-100 text-green-700 rounded-full flex items-center gap-2">
-                ✅ 12A & 80G Approved
-              </span>
-              <span className="px-4 py-2 text-sm font-medium bg-yellow-100 text-yellow-700 rounded-full flex items-center gap-2">
-                💼 CSR Certified
-              </span>
-              <span className="px-4 py-2 text-sm font-medium bg-blue-100 text-blue-700 rounded-full flex items-center gap-2">
-                🏢 CSO Registered
-              </span>
+            {/* Certifications – Circular Representation */}
+            <div className="flex flex-wrap justify-center gap-10 mt-10">
+              {CERTIFICATIONS.map((item) => (
+                <div key={item.title} className="flex flex-col items-center">
+                  {/* Circle */}
+                  <div
+                    className="w-20 h-20 rounded-full border-[4px] border-sky-400 bg-white
+                      flex items-center justify-center shadow-md"
+                  >
+                    <span className="text-lg font-bold text-gray-900">
+                      {item.title}
+                    </span>
+                  </div>
+
+                  {/* Code */}
+                  <span className="mt-3 text-xs font-semibold tracking-wide text-gray-700">
+                    {item.code}
+                  </span>
+                </div>
+              ))}
             </div>
           </article>
         </FadeUp>
