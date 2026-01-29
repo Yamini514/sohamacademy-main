@@ -5,6 +5,14 @@ import Ganitha from "../assets/Team/Ganitha.png";
 import Anusha from "../assets/Team/Anusha.png";
 import Spandhana from "../assets/Team/Spandhana.png";
 import Rahul from "../assets/Team/Rahul.png";
+import pavan from "../assets/about2025-26/pavan.png"
+
+import pavani from "../assets/about2025-26/pavani.png"
+import  praharsha from "../assets/about2025-26/praharsha.png"
+import santhosh from "../assets/about2025-26/santhosh.png"
+import ramya from "../assets/about2021-25/ramya.png"
+
+
 import { useState, useMemo } from "react";
 
 const TEAM = [
@@ -23,29 +31,28 @@ const TEAM = [
 
 const CORE_TEAM_BY_YEAR = {"AY 2025-26":[{
     id: 1,
-    name: "Komaragiri Sahadev",
-    role: "Founder & Director, Soham Academy of Human Excellence",
-    img: i1,
+    name: "pavan",
+    role: "Core Team Member",
+    img: pavan,
   },
-  { id: 2, name: "B Jeshwanth", role: "Program Coordinator", img: Jeshwanth },
-  { id: 3, name: "Ganitha", role: "Program Coordinator", img: Ganitha },
-  { id: 4, name: "Y Anusha", role: "Core Team Member", img: Anusha },
-  { id: 5, name: "Spandhana", role: "Core Team Member", img: Spandhana },
-  { id: 6, name: "Rahul Goud", role: "Core Team Member", img: Rahul },],
-  
+ 
+  { id: 2, name: "Pavani", role: "Core Team Member", img: pavani },
+  { id: 3, name: "Santhosh", role: "Core Team Member", img: santhosh },
+  { id: 4, name: "Praharsha", role: "Core Team Member", img: praharsha },
+ ],
+ 
   "AY 2021-25":[
-
+ 
   {
     id: 1,
-    name: "Komaragiri Sahadev",
-    role: "Founder & Director, Soham Academy of Human Excellence",
-    img: i1,
+    name: "Anusha",
+    role: "Core Team Member",
+    img: Anusha,
   },
-  { id: 2, name: "B Jeshwanth", role: "Program Coordinator", img: Jeshwanth },
-  { id: 3, name: "Ganitha", role: "Program Coordinator", img: Ganitha },
-  { id: 4, name: "Y Anusha", role: "Core Team Member", img: Anusha },
-  { id: 5, name: "Spandhana", role: "Core Team Member", img: Spandhana },
-  { id: 6, name: "Rahul Goud", role: "Core Team Member", img: Rahul },
+  { id: 2, name: "Spandana", role: "Core Team Member", img: Spandhana },
+  { id: 3, name: "Rahul Goud", role: "Core Team Member", img: Rahul },
+  { id: 4, name: "Ramya", role: "Core Team Member", img: ramya },
+ 
 ]};
 
 
