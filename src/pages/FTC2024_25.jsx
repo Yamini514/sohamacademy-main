@@ -8,10 +8,52 @@ import ftc2 from "../assets/ftc2.png";
 import ftc3 from "../assets/ftc3.png";
 import logo from "../assets/brand.png";
 
+import heroImg from "../assets/2024-25/hero.png";
+
+//bot images
+import bot1 from "../assets/2024-25/bot1.png";
+import bot2 from "../assets/2024-25/bot2.png";
+import bot3 from "../assets/2024-25/bot3.png";
+import bot4 from "../assets/2024-25/bot4.png";
+
+
 // Team member images - you'll need to import these
-// import sahadevImg from "../assets/team/sahadev.jpg";
-// import prasadImg from "../assets/team/prasad.png";
+import sahadevImg from "../assets/2024-25/SahadevKomaragiri.png";
+import prasadImg from "../assets/2024-25/PrasadKomaragiri.png";
+import ramyaImg from "../assets/2024-25/Ramya.png";
+import jeshwanthImg from "../assets/2024-25/Jeshwanth.png";
+import kushalImg from "../assets/2024-25/KushalManikanta.png";
+import jahnaviImg from "../assets/2024-25/Jahnavi.png";
+import chandanaImg from "../assets/2024-25/Chandana.png";
+import manoharImg from "../assets/2024-25/Manohar.png";
+import shikhaImg from "../assets/2024-25/Shikha.png";
+import maithriImg from "../assets/2024-25/Maithri.png";
+import teenaImg from "../assets/2024-25/Teena.png";
+import harshaImg from "../assets/2024-25/HarshaVardhan.png";
+import akhilImg from "../assets/2024-25/AkhilPrajwal.png";
+import shivaImg from "../assets/2024-25/Shiva.png";
+import sakshithImg from "../assets/2024-25/Sakshith.png";
+
 // etc...
+
+import gbhs1 from "../assets/2024-25/gbhs1.png";
+import gbhs2 from "../assets/2024-25/gbhs2.png";
+import gbhs3 from "../assets/2024-25/gbhs3.png";
+import gbhs4 from "../assets/2024-25/gbhs4.png";
+import zphs1 from "../assets/2024-25/zphs1.png";
+import zphs2 from "../assets/2024-25/zphs2.png";
+import ntt1 from "../assets/2024-25/ntt1.png";
+import ntt2 from "../assets/2024-25/ntt2.png";
+import ntt3 from "../assets/2024-25/ntt3.png";
+import ou from "../assets/2024-25/ou.png";
+import alpha from  "../assets/2024-25/alpha.png";
+import other1 from "../assets/2024-25/other1.png";
+import other2 from "../assets/2024-25/other2.png";
+import other3 from "../assets/2024-25/other3.png";
+import other4 from "../assets/2024-25/other4.png";
+
+import texoham from "../assets/CSR/texoham1.png";
+
 
 const HERO_IMAGES = [
   { src: ftc1, alt: "FTC 2024-25 - Team at event" },
@@ -20,52 +62,52 @@ const HERO_IMAGES = [
 ];
 
 const BOT_IMAGES = [
-  { src: ftc2, alt: "Our FTC Bot - Practice" },
-  { src: ftc3, alt: "Our FTC Bot - Build & Testing" },
-  { src: ftc1, alt: "Our FTC Bot - Team with Robot" },
-  { src: ftc2, alt: "Our FTC Bot - Practice" },
+  { src: bot1, alt: "Our FTC Bot - Practice" },
+  { src: bot2, alt: "Our FTC Bot - Build & Testing" },
+  { src: bot3, alt: "Our FTC Bot - Team with Robot" },
+  { src: bot4, alt: "Our FTC Bot - Practice" },
 ];
 
 const OUTREACH_DATA = [
   {
     title: "At GBHS, CPL Amberpet",
     images: [
-      { src: ftc1, alt: "GBHS, CPL_1" },
-      { src: ftc2, alt: "GBHS, CPL_2" },
-      { src: ftc3, alt: "GBHS, CPL_3" },
-      { src: ftc1, alt: "GBHS, CPL_4" },
+      { src: gbhs1, alt: "GBHS, CPL_1" },
+      { src: gbhs2, alt: "GBHS, CPL_2" },
+      { src: gbhs3, alt: "GBHS, CPL_3" },
+      { src: gbhs4, alt: "GBHS, CPL_4" },
     ],
   },
   {
     title: "At ZPHS, Ramanthapur",
     images: [
-      { src: ftc2, alt: "ZPHS, Ramanthapur" },
-      { src: ftc3, alt: "ZPHS, Ramanthapur_2" },
+      { src: zphs1, alt: "ZPHS, Ramanthapur" },
+      { src: zphs2, alt: "ZPHS, Ramanthapur_2" },
     ],
   },
   {
     title: "At NTT DATA Office",
     images: [
-      { src: ftc1, alt: "NTT DATA_2" },
-      { src: ftc2, alt: "NTT DATA_3" },
-      { src: ftc3, alt: "NTT DATA_1" },
+      { src: ntt1, alt: "NTT DATA_2" },
+      { src: ntt2, alt: "NTT DATA_3" },
+      { src: ntt3, alt: "NTT DATA_1" },
     ],
   },
   {
     title: "At Mechanical Branch, OU",
-    images: [{ src: ftc1, alt: "Mechanical Branch, OU" }],
+    images: [{ src: ou, alt: "Mechanical Branch, OU" }],
   },
   {
     title: "With Team Alpha",
-    images: [{ src: ftc2, alt: "Team Alpha" }],
+    images: [{ src: alpha, alt: "Team Alpha" }],
   },
   {
     title: "At Other Schools",
     images: [
-      { src: ftc3, alt: "Schools_3" },
-      { src: ftc1, alt: "Schools_2" },
-      { src: ftc2, alt: "Schools_1" },
-      { src: ftc3, alt: "Schools_4" },
+      { src: other1, alt: "Schools_1" },
+      { src: other2, alt: "Schools_2" },
+      { src: other3, alt: "Schools_3" },
+      { src: other4, alt: "Schools_4" },
     ],
   },
 ];
@@ -79,93 +121,93 @@ const HIGHLIGHT_IMAGES = [
 
 const SPONSOR_LOGOS = [
   { src: logo, alt: "Soham Academy Logo", name: "Soham Academy" },
-  { src: ftc2, alt: "Texoham Logo", name: "Texoham Designs" },
+  { src: texoham, alt: "Texoham Logo", name: "Texoham Designs" },
 ];
 
 const TEAM = [
   {
     name: "Sahadev Komaragiri",
     role: "Founder and Director, Soham Academy",
-    // image: sahadevImg
+    image: sahadevImg
   },
   {
     name: "Prasad Komaragiri",
     role: "Mentor",
-    // image: prasadImg
+    image: prasadImg
   },
   {
     name: "Ramya",
     role: "Communication Coach",
-    // image: ramyaImg
+    image: ramyaImg
   },
   {
     name: "Jeshwanth",
     role: "Coach",
-    // image: jeshwanthImg
+    image: jeshwanthImg
   },
   {
     name: "Kushal Manikanta",
     role: "Mentor",
-    // image: kushalImg
+    image: kushalImg
   },
   {
     name: "Jahnavi",
     role: "Junior Mentor",
-    // image: jahnaviImg
+    image: jahnaviImg
   },
   {
     name: "Chandana",
     role: "Facilitator",
-    // image: chandanaImg
+    image: chandanaImg
   },
   {
     name: "Manohar",
     role: "Captain, Programmer",
-    // image: manoharImg
+    image: manoharImg
   },
   {
     name: "Shikha",
     role: "Driver",
-    // image: shikhaImg
+    image: shikhaImg
   },
   {
     name: "Maithri",
     role: "Programming",
-    // image: maithriImg
+    image: maithriImg
   },
   {
     name: "Teena",
     role: "Designing",
-    // image: teenaImg
+    image: teenaImg
   },
   {
     name: "Harsha Vardhan",
     role: "Human Player and Build Team",
-    // image: harshaImg
+    image: harshaImg
   },
   {
     name: "Akhil Prajwal",
     role: "Build Team",
-    // image: akhilImg
+    image: akhilImg
   },
   {
     name: "Shiva",
     role: "Driver",
-    // image: shivaImg
+    image: shivaImg
   },
   {
     name: "Sakshith",
     role: "Designing",
-    // image: sakshithImg
+    image: sakshithImg
   },
 ];
 
-function Section({ eyebrow, title, children }) {
+function Section({ eyebrow, title, children, className = "" }) {
   return (
-    <section className="py-12 md:py-16">
+    <section className={`py-8 md:py-10 ${className}`}>
       <div className="max-w-7xl mx-auto px-6">
         {eyebrow && (
-          <div className="text-xs tracking-widest justify-center items-center font-bold text-gray-500 uppercase mb-3">
+          <div className="text-xs tracking-widest font-bold text-gray-500 uppercase mb-3">
             {eyebrow}
           </div>
         )}
@@ -180,32 +222,92 @@ function Section({ eyebrow, title, children }) {
   );
 }
 
+
 function OutreachSection({ title, images, onOpen, startIndex }) {
+  const [current, setCurrent] = useState(0);
+  const count = images.length;
+
+  // Auto-slide
+  useEffect(() => {
+    if (count <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % count);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [count]);
+
   return (
-    <div className="mb-12">
-      <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
+    <div className="rounded-xl p-4 shadow-lg bg-white">
+      {/* IMAGE AREA */}
+      <div className="relative overflow-hidden rounded-lg h-56">
+        <button
+          className="w-full h-full"
+          onClick={() => onOpen(startIndex + current)}
+        >
+          <img
+            src={images[current].src}
+            alt={images[current].alt}
+            className="w-full h-full object-cover transition-all duration-500"
+            loading="lazy"
+          />
+        </button>
+
+        {/* Arrows (only if multiple images) */}
+        {count > 1 && (
+          <>
+            <button
+              onClick={() =>
+                setCurrent((current - 1 + count) % count)
+              }
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-1 rounded-full"
+            >
+              ‹
+            </button>
+
+            <button
+              onClick={() =>
+                setCurrent((current + 1) % count)
+              }
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-1 rounded-full"
+            >
+              ›
+            </button>
+          </>
+        )}
+      </div>
+
+      {/* DOTS */}
+      {count > 1 && (
+        <div className="flex justify-center gap-2 mt-3">
+          {images.map((_, i) => (
+            <span
+              key={i}
+              onClick={() => setCurrent(i)}
+              className={`w-2 h-2 rounded-full cursor-pointer transition ${
+                i === current
+                  ? "bg-sky-500"
+                  : "bg-gray-300"
+              }`}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* TITLE */}
+      <h3 className="mt-4 text-center text-sky-400 font-semibold text-lg">
         {title}
       </h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {images.map((img, i) => (
-          <button
-            key={i}
-            onClick={() => onOpen(startIndex + i)}
-            className="relative overflow-hidden rounded-lg shadow hover:shadow-lg transition-shadow"
-            type="button"
-          >
-            <img
-              src={img.src}
-              alt={img.alt}
-              className="w-full h-48 object-cover"
-              loading="lazy"
-            />
-          </button>
-        ))}
-      </div>
     </div>
   );
 }
+
+
+
+
+
+
 
 function Modal({ images, index, setIndex, onClose, downloadNamePrefix }) {
   useEffect(() => {
@@ -328,10 +430,10 @@ export default function FTC2024_25() {
   return (
     <main className="bg-white min-h-screen">
       {/* HERO SECTION */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-5 lg:px-6  lg:py-00">
-        <div className="max-w-7xl mx-auto px-6 py-15 md:py-13">
+      <div className="max-w-7xl mx-auto px-6 sm:px-5 lg:px-6">
+        <div className="max-w-7xl mx-auto px-6 py-6 md:py-6">
           {/* Hero Content */}
-          <div className="text-amber-400 px-10 text-2xl font-bold  uppercase mb-7">
+          <div className="mt-1 text-2xl md:text-3xl font-bold text-amber-400 px-8">
             First Tech Challenge (FTC) 2024-25
           </div>
           <div className="mb-8">
@@ -339,15 +441,15 @@ export default function FTC2024_25() {
               {/* LEFT IMAGE */}
               <div className="flex justify-center">
                 <img
-                  src={HERO_IMAGES[0].src}
+                  src={heroImg}
                   alt="Soham Champs 24067"
-                  className="w-full max-w-lg rounded-lg shadow-lg"
+                  className="w-full max-w-lg rounded-lg shadow-lg mt-4"
                 />
               </div>
 
               {/* RIGHT TEXT */}
               <div className="prose max-w-none">
-                <p className="text-gray-700 leading-relaxed mb-4">
+                <p className="text-gray-700 leading-relaxed mb-4 mt-3 px-3">
                   At Soham Academy of Human Excellence, we take pride in
                   nurturing young talent through meaningful, hands-on technology
                   education.{" "}
@@ -359,7 +461,7 @@ export default function FTC2024_25() {
                   learning accessible to students from government schools.
                 </p>
 
-                <p className="text-gray-700 leading-relaxed">
+                <p className="text-gray-700 leading-relaxed mt-3 px-3">
                   During the 2024–2025 FTC season, we enabled and mentored the
                   participation of eight students (five boys and three girls)
                   exclusively from government schools of Telangana, supported by
@@ -381,20 +483,20 @@ export default function FTC2024_25() {
         </div>
       </div>
 
-      <section className="py-2 md:py-2 ">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-2 lg:py-00">
+      <section className="pt-4 pb-2 md:pt-4 md:pb-2">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-2">
           {/* Eyebrow */}
-          <div className="text-center text-sky-400 text-2xl font-bold  uppercase">
+          <div className="text-center text-sky-500 font-semibold text-lg uppercase tracking-wide">
             MACHINE THAT BROUGHT THE GLORY
           </div>
 
           {/* Title */}
-          <h2 className="mt-3 text-center text-2xl md:text-3xl font-extrabold text-amber-400">
+          <h2 className="text-center mt-3 text-2xl md:text-3xl font-extrabold text-amber-400">
             Our FTC Bot &amp; Practice Hours
           </h2>
 
           {/* Paragraph */}
-          <p className="mt-5 mx-auto max-w-4xl text-center text-[12px] md:text-sm leading-6 md:leading-7 text-gray-700">
+          <p className="mt-3 text-slate-600 text-lg leading-8">
             This achievement reinforces our belief that government school
             students, when provided with the right mentorship, exposure, and
             learning environment, can compete and excel on global platforms. At
@@ -405,7 +507,7 @@ export default function FTC2024_25() {
           </p>
 
           {/* Image Grid */}
-          <div className="mt-8 flex justify-center">
+          <div className="mt-5 flex justify-center">
             <div className="inline-grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
               {BOT_IMAGES.map((img, i) => (
                 <button
@@ -428,21 +530,21 @@ export default function FTC2024_25() {
       </section>
 
       {/* PARTICIPATING TEAM AND MENTORS */}
-      <Section className="py-8 md:py-10">
+      <Section className="pt-3 md:pt-4 mt-5">
   {/* ONE shared container */}
   <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
     {/* Eyebrow */}
-    <div className="text-center text-sky-400 text-2xl font-bold uppercase">
+    <div className="text-center text-sky-500 font-semibold text-lg uppercase tracking-wide">
       PARTICIPATING TEAM AND MENTORS
     </div>
 
     {/* Title */}
-    <h2 className="mt-3 text-center text-2xl md:text-3xl font-extrabold text-amber-400">
+    <h2 className="text-center mt-3 text-2xl md:text-3xl font-extrabold text-amber-400">
       Our Super Team
     </h2>
 
     {/* Description */}
-    <p className="mt-4 mx-auto max-w-4xl text-center text-xs md:text-sm leading-6 md:leading-7 text-gray-700">
+    <p className="mt-3 text-slate-600 text-lg leading-8">
       Students from GBHS, CPL; ZPHS, Nagole; GBHS, CPL Police Lines and
       Vedic Vidyalayam actively participated in every phase of the FTC
       journey—robot design, programming, testing, documentation, outreach,
@@ -479,29 +581,29 @@ export default function FTC2024_25() {
       ))}
     </div>
   </div>
-</Section>
+      </Section>
 
 
       {/* OUTREACH */}
-      <Section className="py-4 md:py-6">
+      <Section className="">
   <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+
     {/* Eyebrow */}
-    <div className="text-center text-sky-400 text-2xl font-bold uppercase">
+    <div className="text-center text-sky-500 font-semibold text-lg uppercase tracking-wide">
       SHARING KNOWLEDGE AND EXTENDING TECH EDUCATION TO MASSES
     </div>
 
     {/* Title */}
-    <h2 className="mt-2 text-center text-2xl md:text-3xl font-extrabold text-amber-400">
+    <h2 className="text-center mt-3 text-2xl md:text-3xl font-extrabold text-amber-400">
       Outreach
     </h2>
 
-    {/* Outreach content */}
-    <div className="mt-8 space-y-12">
+    {/* GRID */}
+    <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       {OUTREACH_DATA.map((section, idx) => {
-        const startIndex = OUTREACH_DATA.slice(0, idx).reduce(
-          (acc, s) => acc + s.images.length,
-          0
-        );
+        const startIndex = OUTREACH_DATA
+          .slice(0, idx)
+          .reduce((acc, s) => acc + s.images.length, 0);
 
         return (
           <OutreachSection
@@ -514,26 +616,28 @@ export default function FTC2024_25() {
         );
       })}
     </div>
+
   </div>
 </Section>
 
 
+
       {/* HIGHLIGHTS */}
       {/* FTC 2024-25 Competition Highlights */}
-      <section className="py-6 md:py-10 ">
+      <section className="pt-3 pb-6 md:pt-4 md:pb-8">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 ">
           {/* Eyebrow */}
-          <div className="text-center text-sky-400 text-2xl font-bold  uppercase">
+          <div className="text-center text-sky-500 font-semibold text-lg uppercase tracking-wide">
             ABOUT THE BIG DAY
           </div>
 
           {/* Title */}
-          <h2 className="mt-2 text-center text-2xl md:text-3xl font-extrabold text-amber-400">
+          <h2 className="text-center mt-3 text-2xl md:text-3xl font-extrabold text-amber-400">
             FTC 2024-25 Competition Highlights
           </h2>
 
           {/* Image Grid */}
-          <div className="mt-8 flex justify-center">
+          <div className="mt-5 flex justify-center">
             <div className="inline-grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-7 md:gap-9">
               {HIGHLIGHT_IMAGES.map((img, i) => (
                 <button
@@ -556,21 +660,21 @@ export default function FTC2024_25() {
       </section>
 
       {/* SPONSORS */}
-      <section className="py-6 md:py-6">
+      <section className="pt-3 pb-6 md:pt-4 md:pb-8">
         {/* Eyebrow */}
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="text-center text-sky-400 text-3xl md:text-2xl font-bold uppercase ">
+          <div className="text-center text-sky-500 font-semibold text-lg uppercase tracking-wide">
             GENEROUS HEARTS WHO MADE IT POSSIBLE
           </div>
         </div>
 
         {/* Title */}
-        <h2 className="mt-2 text-center text-2xl md:text-3xl font-extrabold text-amber-400">
+        <h2 className="text-center mt-3 text-2xl md:text-3xl font-extrabold text-amber-400">
           Our Sponsors
         </h2>
 
         {/* Sponsors Grid */}
-        <div className="mt-8 max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-8 place-items-center">
+        <div className="mt-5 max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-8 place-items-center">
           {SPONSOR_LOGOS.map((sponsor, i) => (
             <img
               key={i}
