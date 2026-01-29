@@ -21,7 +21,7 @@ const TEAM = [
   // { id: 6, name: "Rahul Goud", role: "Core Team Member", img: Rahul },
 ];
 
-const CORE_TEAM_BY_YEAR = {"AY 2021-25":[{
+const CORE_TEAM_BY_YEAR = {"AY 2025-26":[{
     id: 1,
     name: "Komaragiri Sahadev",
     role: "Founder & Director, Soham Academy of Human Excellence",
@@ -33,7 +33,7 @@ const CORE_TEAM_BY_YEAR = {"AY 2021-25":[{
   { id: 5, name: "Spandhana", role: "Core Team Member", img: Spandhana },
   { id: 6, name: "Rahul Goud", role: "Core Team Member", img: Rahul },],
   
-  "AY 2025-26":[
+  "AY 2021-25":[
 
   {
     id: 1,

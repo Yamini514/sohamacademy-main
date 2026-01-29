@@ -8,6 +8,7 @@ import ftc2 from "../assets/ftc2.png";
 import ftc3 from "../assets/ftc3.png";
 import logo from "../assets/brand.png";
 
+
 // Team member images - you'll need to import these
 // import sahadevImg from "../assets/team/sahadev.jpg";
 // import prasadImg from "../assets/team/prasad.png";
@@ -79,7 +80,7 @@ const HIGHLIGHT_IMAGES = [
 
 const SPONSOR_LOGOS = [
   { src: logo, alt: "Soham Academy Logo", name: "Soham Academy" },
-  { src: ftc2, alt: "Texoham Logo", name: "Texoham Designs" },
+  { src: ftc1, alt: "Texoham Logo", name: "Texoham Designs" },
 ];
 
 const TEAM = [
@@ -165,7 +166,7 @@ function Section({ eyebrow, title, children }) {
     <section className="py-12 md:py-16">
       <div className="max-w-7xl mx-auto px-6">
         {eyebrow && (
-          <div className="text-xs tracking-widest justify-center items-center font-bold text-gray-500 uppercase mb-3">
+          <div className="text-xs justify-center items-center font-bold text-gray-500 uppercase mb-3">
             {eyebrow}
           </div>
         )}
@@ -328,19 +329,17 @@ export default function FTC2024_25() {
   return (
     <main className="bg-white min-h-screen">
       {/* HERO SECTION */}
-      <div className="bg-gradient-to-b from-gray-50 to-white">
-        <div className="max-w-7xl mx-auto px-6 py-10 md:py-14">
+      <div className="max-w-7xl mx-auto  sm:px-10 lg:px-16 py-10 lg:py-00">
+        <div className="max-w-7xl mx-auto px-6 py-10 md:py-0">
           {/* Hero Content */}
-          <div className="text-amber-400 px-13 text-2xl font-bold tracking-wide uppercase mb-4">
+          <div className="text-amber-400 px-2 text-2xl font-bold uppercase">
             First Tech Challenge (FTC) 2025-26
           </div>
           <div className="mb-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-              
-
               {/* RIGHT TEXT */}
               <div className="prose max-w-none">
-                <p className="text-gray-700 leading-relaxed mb-4">
+                <p className="text-gray-700 leading-relaxed mb-2">
                   Building on the inspiration and confidence gained from our
                   historic victory in the previous FTC season,{" "}
                   <strong>
@@ -380,7 +379,7 @@ export default function FTC2024_25() {
         </div>
       </div>
 
-      <section className="py-12 md:py-16 ">
+      <section>
         <div className="max-w-7xl mx-auto px-6">
           {/* Eyebrow */}
           <div className="text-center text-sky-400 text-2xl font-bold  uppercase">
@@ -388,10 +387,9 @@ export default function FTC2024_25() {
           </div>
 
           {/* Title */}
-          <h2 className="mt-3 text-center text-2xl md:text-3xl font-extrabold text-amber-400">
+          <h2 className="mt-2 text-center text-2xl md:text-3xl font-bold text-amber-400">
             Our FTC Bot & Practice Hours
           </h2>
-
 
           {/* Image Grid */}
           <div className="mt-8 flex justify-center">
@@ -417,110 +415,123 @@ export default function FTC2024_25() {
       </section>
 
       {/* PARTICIPATING TEAM AND MENTORS */}
-      <Section className="py-12 md:py-16 ">
-        <div className="max-w-7xl mx-auto px-6">
+      <Section className="py-12 md:py-16">
+        {/* Shared container */}
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           {/* Eyebrow */}
-          <div className="text-center text-sky-400 text-2xl font-bold  uppercase">
-            PARTCIPATING TEAM AND MENTORS
+          <div className="text-center text-sky-400 text-2xl font-bold uppercase">
+            PARTICIPATING TEAM AND MENTORS
           </div>
 
           {/* Title */}
-          <h2 className="mt-3 text-center text-2xl md:text-3xl font-extrabold text-amber-400 mb-3 ">
+          <h2 className="mt-3 text-center text-2xl md:text-3xl font-extrabold text-amber-400 mb-8">
             Our Super Team
           </h2>
-        </div>
-        {/* Paragraph */}
-       
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-          {TEAM.map((person) => (
-            <div key={person.name} className="text-center">
-              <div className="mb-3 overflow-hidden rounded-lg shadow-md bg-gray-100 aspect-square">
-                {person.image ? (
-                  <img
-                    src={person.image}
-                    alt={person.name}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-200 to-gray-300">
-                    <span className="text-4xl font-bold text-gray-400">
-                      {person.name.charAt(0)}
-                    </span>
-                  </div>
-                )}
+
+          {/* Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            {TEAM.map((person) => (
+              <div key={person.name} className="text-center">
+                <div className="mb-3 overflow-hidden rounded-lg shadow-md bg-gray-100 aspect-square">
+                  {person.image ? (
+                    <img
+                      src={person.image}
+                      alt={person.name}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-200 to-gray-300">
+                      <span className="text-4xl font-bold text-gray-400">
+                        {person.name.charAt(0)}
+                      </span>
+                    </div>
+                  )}
+                </div>
+                <h4 className="font-bold text-gray-900 text-sm mb-1">
+                  {person.name}
+                </h4>
+                <p className="text-xs text-gray-600">{person.role}</p>
               </div>
-              <h4 className="font-bold text-gray-900 text-sm mb-1">
-                {person.name}
-              </h4>
-              <p className="text-xs text-gray-600">{person.role}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </Section>
 
       {/* OUTREACH */}
-      <Section className="py-12 md:py-16 ">
-        <div className="max-w-7xl mx-auto px-6">
+
+      <Section className="py-12 md:py-16">
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           {/* Eyebrow */}
-          <div className="text-center text-sky-400 text-2xl font-bold  uppercase">
+          <div className="text-center text-sky-400 text-2xl font-bold uppercase">
             SHARING KNOWLEDGE AND EXTENDING TECH EDUCATION TO MASSES
           </div>
-        </div>
-        <h2 className="mt-3 text-center text-2xl md:text-3xl font-extrabold text-amber-400">
-          Outreach
-        </h2>
-        {OUTREACH_DATA.map((section, idx) => {
-          const startIndex = OUTREACH_DATA.slice(0, idx).reduce(
-            (acc, s) => acc + s.images.length,
-            0,
-          );
-          return (
-            <OutreachSection
-              key={idx}
-              title={section.title}
-              images={section.images}
-              onOpen={(i) => openModal(allOutreachImages, i)}
-              startIndex={startIndex}
-            />
-          );
-        })}
-      </Section>
 
+          {/* Title */}
+          <h2 className="mt-3 text-center text-2xl md:text-3xl font-extrabold text-amber-400 mb-12">
+            Outreach
+          </h2>
 
-       <Section className="py-12 md:py-16 ">
-        <div className="max-w-7xl mx-auto px-6">
-          {/* Eyebrow */}
-          <div className="text-center text-sky-400 text-2xl font-bold  uppercase">
-            VOLUNTEER TEAM
+          {/* Outreach Sections */}
+          <div className="space-y-7">
+            {OUTREACH_DATA.map((section, idx) => {
+              const startIndex = OUTREACH_DATA.slice(0, idx).reduce(
+                (acc, s) => acc + s.images.length,
+                0,
+              );
 
+              return (
+                <OutreachSection
+                  key={idx}
+                  title={section.title}
+                  images={section.images}
+                  onOpen={(i) => openModal(allOutreachImages, i)}
+                  startIndex={startIndex}
+                />
+              );
+            })}
           </div>
         </div>
-        <h2 className="mt-3 text-center text-2xl md:text-3xl font-extrabold text-amber-400">
-          Meet with RTX Team
+      </Section>
 
-        </h2>
-        {OUTREACH_DATA.map((section, idx) => {
-          const startIndex = OUTREACH_DATA.slice(0, idx).reduce(
-            (acc, s) => acc + s.images.length,
-            0,
-          );
-          return (
-            <OutreachSection
-              key={idx}
-              title={section.title}
-              images={section.images}
-              onOpen={(i) => openModal(allOutreachImages, i)}
-              startIndex={startIndex}
-            />
-          );
-        })}
+      <Section className="py-12 md:py-10">
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+          {/* Eyebrow */}
+          <div className="text-center text-sky-400 text-2xl font-bold uppercase">
+            VOLUNTEER TEAM
+          </div>
+
+          {/* Title */}
+          <h2 className="mt-3 text-center text-2xl md:text-3xl font-extrabold text-amber-400 ">
+            Meet with RTX Team
+          </h2>
+
+          {/* Volunteer Sections */}
+          <div className="space-y-14">
+            {OUTREACH_DATA.map((section, idx) => {
+              const startIndex = OUTREACH_DATA.slice(0, idx).reduce(
+                (acc, s) => acc + s.images.length,
+                0,
+              );
+
+              return (
+                <OutreachSection
+                  key={idx}
+                  title={section.title}
+                  images={section.images}
+                  onOpen={(i) => openModal(allOutreachImages, i)}
+                  startIndex={startIndex}
+                />
+              );
+            })}
+          </div>
+        </div>
       </Section>
 
       {/* SPONSORS */}
-      <section className="py-6 md:py-10">
+    <section className="py-6 md:py-6">
         {/* Eyebrow */}
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center text-sky-400 text-sm md:text-base font-bold uppercase tracking-wide">
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+          <div className="text-center text-sky-400 text-3xl md:text-2xl font-bold uppercase ">
             GENEROUS HEARTS WHO MADE IT POSSIBLE
           </div>
         </div>
@@ -543,12 +554,14 @@ export default function FTC2024_25() {
         </div>
       </section>
 
+
       <Modal
         images={modalImages}
         index={index}
         setIndex={setIndex}
         onClose={closeModal}
         downloadNamePrefix="FTC-2024-25"
+       
       />
     </main>
   );

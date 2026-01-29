@@ -103,27 +103,44 @@ export default function MissionVision() {
             </p>
 
             {/* Certifications */}
-            {/* Certifications – Circular Representation */}
-            <div className="flex flex-wrap justify-center gap-10 mt-10">
-              {CERTIFICATIONS.map((item) => (
-                <div key={item.title} className="flex flex-col items-center">
-                  {/* Circle */}
-                  <div
-                    className="w-20 h-20 rounded-full border-[4px] border-sky-400 bg-white
-                      flex items-center justify-center shadow-md"
-                  >
-                    <span className="text-lg font-bold text-gray-900">
-                      {item.title}
-                    </span>
-                  </div>
+            {/* Certifications */}
+<div className="mt-12">
+  <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 max-w-4xl mx-auto">
+    {CERTIFICATIONS.map((item) => (
+      <div
+        key={item.title}
+        className="group flex flex-col items-center text-center"
+      >
+        {/* Circle */}
+        <div
+          className="
+            relative w-24 h-24 rounded-full
+            flex items-center justify-center
+            bg-white
+            border-4 border-sky-400
+            shadow-md
+            transition-all duration-300
+            group-hover:scale-105
+            group-hover:shadow-xl
+          "
+        >
+          {/* Inner accent ring */}
+          <div className="absolute inset-2 rounded-full border border-sky-200" />
 
-                  {/* Code */}
-                  <span className="mt-3 text-xs font-semibold tracking-wide text-gray-700">
-                    {item.code}
-                  </span>
-                </div>
-              ))}
-            </div>
+          <span className="relative text-lg font-bold text-gray-900">
+            {item.title}
+          </span>
+        </div>
+
+        {/* Code */}
+        <span className="mt-3 text-xs font-semibold tracking-wide text-gray-600">
+          {item.code}
+        </span>
+      </div>
+    ))}
+  </div>
+</div>
+
           </article>
         </FadeUp>
       </div>

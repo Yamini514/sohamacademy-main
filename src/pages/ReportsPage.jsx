@@ -4,7 +4,7 @@ import { api } from "../store/api";
 
 const TABS = [
   "Monthly Editions",
-  "Distribution Editions",
+  "District Editions",
   "Sponsor Editions",
   "Exhibition Editions",
   "Annual Editions",
@@ -19,8 +19,8 @@ function convertType(type) {
       return "Exhibition Editions";
     case "Annual":
       return "Annual Editions";
-    case "Distribution":
-      return "Distribution Editions";
+    case "District":
+      return "District Editions";
     case "Sponsor":
       return "Sponsor Editions";
     default:
