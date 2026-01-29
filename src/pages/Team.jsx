@@ -82,7 +82,7 @@ export default function Team() {
                 <img
                   src={member.img}
                   alt={`${member.name} — ${member.role}`}
-                  className="w-full h-56 object-cover md:h-64 lg:h-56 block"
+                  className="w-full h-56 object-cover md:h-64 lg:h-80 block"
                   loading="lazy"
                 />
 
