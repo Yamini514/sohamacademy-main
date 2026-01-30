@@ -82,6 +82,28 @@ const result = await api.get("dashboard_stats", { auth: false });
   const resolved = statsData || {};
   const items = [
     {
+      id: "years",
+      label: "Years of Excellence",
+      value: resolved.Years ?? resolved.years ?? "5+",
+      duration: 700,
+      icon: <Calendar className="w-6 h-6" />,
+    },
+    {
+      id: "states",
+      label: "States Reached",
+      value: resolved.States ?? resolved.states ?? 0,
+      duration: 900,
+      icon: <MapPin className="w-6 h-6" />,
+    },
+     
+    {
+      id: "districts",
+      label: "Districts Benefited",
+      value: resolved.Districts ?? resolved.districts ?? 0,
+      duration: 1100,
+      icon: <Map className="w-6 h-6" />,
+    },
+    {
       id: "schools",
       label: "Schools Assisted",
       value: resolved.Schools,
@@ -90,7 +112,7 @@ const result = await api.get("dashboard_stats", { auth: false });
     },
     {
       id: "students",
-      label: "Students Trained",
+      label: "School Students Trained",
       // try multiple possible keys your backend might return
       value: resolved.School_Students,
       duration: 1700,
@@ -105,34 +127,15 @@ const result = await api.get("dashboard_stats", { auth: false });
     },
     {
       id: "College Students",
-      label: "Colleges Trained",
+      label: "College Students Trained",
       // try multiple possible keys your backend might return
       value: resolved.College_Students,
       duration: 1700,
       icon: <Users className="w-6 h-6" />,
     },
     {id:"innovtions", label:"Creative Projects", value:resolved.Innovations,duration:1600,icon:<Lightbulb className="w-6 h-6"/>},
-    {
-      id: "states",
-      label: "States Reached",
-      value: resolved.States ?? resolved.states ?? 0,
-      duration: 900,
-      icon: <MapPin className="w-6 h-6" />,
-    },
-    {
-      id: "districts",
-      label: "Districts Benefited",
-      value: resolved.Districts ?? resolved.districts ?? 0,
-      duration: 1100,
-      icon: <Map className="w-6 h-6" />,
-    },
-    {
-      id: "years",
-      label: "Years of Excellence",
-      value: resolved.Years ?? resolved.years ?? "5+",
-      duration: 700,
-      icon: <Calendar className="w-6 h-6" />,
-    },
+   
+    
   ];
  
 
