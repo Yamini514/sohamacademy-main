@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import SectionHeader from "../components/SectionHeader";
 import { Download, Share2, X, ChevronLeft, ChevronRight } from "lucide-react";
+import Container from "../components/layout/Container";
+import { FtcHeading, FtcText, FTC_SIDE_PX } from "../components/ftc/FtcSection";
 
 // import your images from assets folder
 import ftc1 from "../assets/FTC.png";
@@ -12,7 +13,7 @@ const IMAGES = [
   { src: ftc1, alt: "FTC Competition - Team Presentation" },
   { src: ftc2, alt: "FTC Competition - Students with Robot" },
   { src: ftc3, alt: "FTC Arena Performance" },
-  //   { src: ftc4, alt: "FTC Robotics Demonstration" },
+  // { src: ftc4, alt: "FTC Robotics Demonstration" },
 ];
 
 export default function FTC() {
@@ -26,7 +27,8 @@ export default function FTC() {
       if (index < 0) return;
       if (e.key === "Escape") close();
       if (e.key === "ArrowLeft") setIndex((i) => Math.max(i - 1, 0));
-      if (e.key === "ArrowRight") setIndex((i) => Math.min(i + 1, IMAGES.length - 1));
+      if (e.key === "ArrowRight")
+        setIndex((i) => Math.min(i + 1, IMAGES.length - 1));
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
@@ -49,37 +51,39 @@ export default function FTC() {
         });
       } else {
         await navigator.clipboard.writeText(src);
-        alert("📋 Image URL copied to clipboard!");
+        alert("Image URL copied to clipboard!");
       }
     } catch {
       await navigator.clipboard.writeText(src);
-      alert("Couldn’t share, link copied!");
+      alert("Couldn't share, link copied!");
     }
   };
 
   return (
     <main className="bg-white min-h-screen">
       {/* Page Header */}
-      <section className="">
-        <div className="">
-          <SectionHeader
-            title="First Tech Challenge (FTC)"
-            subtitle="We, Soham Academy (#24067), made our debut in the First Tech Challenge (FTC), joining a vibrant community of innovators from India, Kazakhstan, and Sri Lanka! 
-            Students from ZPHS, Boduppal and GHS Police Boys actively participated, showcasing our meticulously crafted robots and inspiring creativity at global level."
-          />
-        </div>
+      <section className="pt-10 pb-6">
+        <Container className={FTC_SIDE_PX}>
+          <FtcHeading as="h1">First Tech Challenge (FTC)</FtcHeading>
+          <FtcText>
+            We, Soham Academy (#24067), made our debut in the First Tech
+            Challenge (FTC), joining a vibrant community of innovators from
+            India, Kazakhstan, and Sri Lanka. Students from ZPHS, Boduppal and
+            GHS Police Boys actively participated, showcasing our meticulously
+            crafted robots and inspiring creativity at a global level.
+          </FtcText>
+        </Container>
       </section>
 
       {/* FTC Gallery */}
-      {/* FTC Gallery */}
-      <section className="pt-12 ">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="pt-8 pb-12">
+        <Container className={FTC_SIDE_PX}>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {IMAGES.map((img, i) => (
               <div
                 key={i}
                 onClick={() => open(i)}
-                className="relative overflow-hidden rounded-xl shadow-md group cursor-pointer"
+                className="relative overflow-hidden rounded-2xl shadow-md group cursor-pointer"
               >
                 <img
                   src={img.src}
@@ -93,7 +97,7 @@ export default function FTC() {
               </div>
             ))}
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Fullscreen Modal */}
@@ -131,6 +135,7 @@ export default function FTC() {
             <button
               onClick={() => setIndex((i) => Math.max(i - 1, 0))}
               className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-md transition"
+              aria-label="Previous"
             >
               <ChevronLeft className="w-6 h-6 text-black" />
             </button>
@@ -140,6 +145,7 @@ export default function FTC() {
             <button
               onClick={() => setIndex((i) => Math.min(i + 1, IMAGES.length - 1))}
               className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-md transition"
+              aria-label="Next"
             >
               <ChevronRight className="w-6 h-6 text-black" />
             </button>
