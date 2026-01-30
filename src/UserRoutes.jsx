@@ -1,28 +1,41 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
-// Import all pages you want to use
 import Home from "./pages/Home";
 import About from "./pages/About";
+import Contact from "./pages/Contact";
+import NotFound from "./pages/NotFound";
+import ReportsPage from "./pages/ReportsPage";
+
+// ✅ FTC tab layout + pages
+import FTCLayout from "./pages/FTCLayout";
+import FTCAbout from "./pages/FTCAbout";
+import FTC2024_25 from "./pages/FTC2024_25";
+import FTC2025_26 from "./pages/FTC2025_26";
+import FTC2023_24 from "./pages/FTC2023_24";
 
 import FTC from "./pages/FTC";
-import Contact from "./pages/Contact";
-// import DashboardPage from "./pages/DashboardPage"; // if you have this
-import NotFound from "./pages/NotFound"; // fallback for wrong URLs
-import ReportsPage from "./pages/ReportsPage";
 
 const UserRoutes = () => {
   return (
     <Routes>
-<Route path="*" element={<Home />} />
+      {/* ✅ Home should be "/" not "*" */}
+      <Route path="/" element={<Home />} />
+
       <Route path="/about" element={<About />} />
-      <Route path="/reports" element={<ReportsPage/>}/>
-      <Route path="/ftc" element={<FTC />} />
+      <Route path="/reports" element={<ReportsPage />} />
       <Route path="/contact" element={<Contact />} />
-      {/* <Route
-        path="/dashboard"
-        element={<DashboardPage srcUrl="https://example.com" />}
-      /> */}
+
+      {/* ✅ FTC nested routes (tab view) */}
+      <Route path="/ftc" element={<FTCLayout />}>
+        <Route index element={<Navigate to="about" replace />} />
+        <Route path="about" element={<FTCAbout />} />
+        <Route path="2025-26" element={<FTC2025_26 />} />
+        <Route path="2024-25" element={<FTC2024_25 />} />
+        <Route path="2023-24" element={<FTC />} />
+      </Route>
+
+      {/* ✅ only one fallback at end */}
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

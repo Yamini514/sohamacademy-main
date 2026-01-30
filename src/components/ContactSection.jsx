@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, CheckCircle } from "lucide-react";
 import { api } from "../store/api";
 
 export default function ContactSection() {
@@ -12,17 +12,59 @@ export default function ContactSection() {
   });
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState(null);
+  const [errors, setErrors] = useState({});
+  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
+    // Clear error for this field when user starts typing
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+    }
   };
 
   const validateForm = () => {
     const newErrors = {};
-    if (!form.email) newErrors.email = "Email is required";
-    if (!form.message) newErrors.message = "Message is required";
-    setStatus(newErrors);
+
+    // Name validation
+    if (!form.name.trim()) {
+      newErrors.name = "Name is required";
+    } else if (form.name.trim().length < 2) {
+      newErrors.name = "Name must be at least 2 characters";
+    } else if (!/^[a-zA-Z\s]+$/.test(form.name)) {
+      newErrors.name = "Name should only contain letters";
+    }
+
+    // Phone validation
+    if (!form.phone.trim()) {
+      newErrors.phone = "Phone number is required";
+    } else if (!/^[6-9]\d{9}$/.test(form.phone.replace(/\s+/g, ""))) {
+      newErrors.phone = "Please enter a valid 10-digit phone number";
+    }
+
+    // Email validation
+    if (!form.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    // Subject validation
+    if (!form.subject.trim()) {
+      newErrors.subject = "Subject is required";
+    } else if (form.subject.trim().length < 3) {
+      newErrors.subject = "Subject must be at least 3 characters";
+    }
+
+    // Message validation
+    if (!form.message.trim()) {
+      newErrors.message = "Message is required";
+    } else if (form.message.trim().length < 10) {
+      newErrors.message = "Message must be at least 10 characters";
+    }
+
+    setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
@@ -33,10 +75,11 @@ export default function ContactSection() {
     setStatus(null);
 
     try {
-      // API call from your first code
-      const res = await api.post("contacts", form, { auth: false });
+      const res = await api.post("contacts", { data: form }, { auth: false });
       setStatus({ success: res?.message || "Message sent successfully!" });
       setForm({ name: "", phone: "", email: "", subject: "", message: "" });
+      setErrors({});
+      setSubmitted(true);
     } catch (err) {
       console.error(err);
       setStatus({
@@ -46,6 +89,11 @@ export default function ContactSection() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleSendAnother = () => {
+    setSubmitted(false);
+    setStatus(null);
   };
 
   const contactInfo = [
@@ -98,7 +146,7 @@ export default function ContactSection() {
       aria-label="Contact"
       style={{
         backgroundImage:
-          "url('https://ria.sohamacademy.org/wp-content/uploads/2025/01/Snapinst.app_469204666_1514121172637631_4412047678977477125_n_1080-1024x576.jpg')",
+          "url('contact-bg.webp')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -137,93 +185,150 @@ export default function ContactSection() {
               </ul>
             </div>
 
-            {/* Right Side */}
-            <form
-              onSubmit={handleSubmit}
-              className="bg-white border border-gray-200 rounded-2xl p-8 shadow-md space-y-4"
-            >
-              {status?.error && (
-                <div className="p-2 bg-red-100 text-red-700 rounded">
-                  {status.error}
+            {/* Right Side - Form or Thank You Message */}
+            {submitted ? (
+              <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-md flex flex-col items-center justify-center min-h-[500px] text-center">
+                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-6">
+                  <CheckCircle className="w-12 h-12 text-green-600" />
                 </div>
-              )}
-              {status?.success && (
-                <div className="p-2 bg-green-100 text-green-700 rounded">
-                  {status.success}
-                </div>
-              )}
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <label className="block">
-                  <span className="text-sm font-medium">Name</span>
-                  <input
-                    name="name"
-                    value={form.name}
-                    onChange={handleChange}
-                    className="mt-1 block w-full border border-gray-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-100"
-                    placeholder="Your name"
-                  />
-                </label>
-
-                <label className="block">
-                  <span className="text-sm font-medium">Phone</span>
-                  <input
-                    name="phone"
-                    value={form.phone}
-                    onChange={handleChange}
-                    className="mt-1 block w-full border border-gray-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-100"
-                    placeholder="Your phone number"
-                  />
-                </label>
-              </div>
-
-              <label className="block">
-                <span className="text-sm font-medium">Email *</span>
-                <input
-                  name="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 block w-full border border-gray-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-100"
-                  placeholder="Your email address"
-                />
-              </label>
-
-              <label className="block">
-                <span className="text-sm font-medium">Subject</span>
-                <input
-                  name="subject"
-                  value={form.subject}
-                  onChange={handleChange}
-                  className="mt-1 block w-full border border-gray-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-100"
-                  placeholder="Subject of your inquiry"
-                />
-              </label>
-
-              <label className="block">
-                <span className="text-sm font-medium">Message *</span>
-                <textarea
-                  name="message"
-                  value={form.message}
-                  onChange={handleChange}
-                  required
-                  rows={6}
-                  className="mt-1 block w-full border border-gray-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-100"
-                  placeholder="Tell us about your requirements..."
-                />
-              </label>
-
-              <div className="flex justify-center">
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                  Thank You for Contacting Soham Academy!
+                </h3>
+                <p className="text-gray-600 mb-8 max-w-md leading-relaxed">
+                  We have received your message and will reach out to you soon.
+                </p>
                 <button
-                  type="submit"
-                  disabled={loading}
-                  className="px-4 py-2 bg-brand-cyan hover:bg-sky-600 text-white rounded-md font-medium text-sm transition-colors"
+                  onClick={handleSendAnother}
+                  className="px-6 py-2.5 bg-brand-cyan hover:bg-sky-600 text-white rounded-md font-medium text-sm transition-colors"
                   style={{ backgroundColor: "var(--brand-cyan, #01C1F2)" }}
                 >
-                  {loading ? "Submitting..." : "Submit"}
+                  Send Another Message
                 </button>
               </div>
-            </form>
+            ) : (
+              <form
+                onSubmit={handleSubmit}
+                className="bg-white border border-gray-200 rounded-2xl p-8 shadow-md space-y-4"
+              >
+                {status?.error && (
+                  <div className="p-3 bg-red-100 text-red-700 rounded-md text-sm">
+                    {status.error}
+                  </div>
+                )}
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <label className="block">
+                    <span className="text-sm font-medium">Name *</span>
+                    <input
+                      name="name"
+                      value={form.name}
+                      onChange={handleChange}
+                      className={`mt-1 block w-full border ${errors.name ? "border-red-500" : "border-gray-200"
+                        } rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 ${errors.name
+                          ? "focus:ring-red-100"
+                          : "focus:ring-sky-100"
+                        }`}
+                      placeholder="Your name"
+                    />
+                    {errors.name && (
+                      <span className="text-xs text-red-500 mt-1">
+                        {errors.name}
+                      </span>
+                    )}
+                  </label>
+
+                  <label className="block">
+                    <span className="text-sm font-medium">Phone *</span>
+                    <input
+                      name="phone"
+                      value={form.phone}
+                      onChange={handleChange}
+                      className={`mt-1 block w-full border ${errors.phone ? "border-red-500" : "border-gray-200"
+                        } rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 ${errors.phone
+                          ? "focus:ring-red-100"
+                          : "focus:ring-sky-100"
+                        }`}
+                      placeholder="Your phone number"
+                    />
+                    {errors.phone && (
+                      <span className="text-xs text-red-500 mt-1">
+                        {errors.phone}
+                      </span>
+                    )}
+                  </label>
+                </div>
+
+                <label className="block">
+                  <span className="text-sm font-medium">Email *</span>
+                  <input
+                    name="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    className={`mt-1 block w-full border ${errors.email ? "border-red-500" : "border-gray-200"
+                      } rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 ${errors.email ? "focus:ring-red-100" : "focus:ring-sky-100"
+                      }`}
+                    placeholder="Your email address"
+                  />
+                  {errors.email && (
+                    <span className="text-xs text-red-500 mt-1">
+                      {errors.email}
+                    </span>
+                  )}
+                </label>
+
+                <label className="block">
+                  <span className="text-sm font-medium">Subject *</span>
+                  <input
+                    name="subject"
+                    value={form.subject}
+                    onChange={handleChange}
+                    className={`mt-1 block w-full border ${errors.subject ? "border-red-500" : "border-gray-200"
+                      } rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 ${errors.subject
+                        ? "focus:ring-red-100"
+                        : "focus:ring-sky-100"
+                      }`}
+                    placeholder="Subject of your inquiry"
+                  />
+                  {errors.subject && (
+                    <span className="text-xs text-red-500 mt-1">
+                      {errors.subject}
+                    </span>
+                  )}
+                </label>
+
+                <label className="block">
+                  <span className="text-sm font-medium">Message *</span>
+                  <textarea
+                    name="message"
+                    value={form.message}
+                    onChange={handleChange}
+                    rows={6}
+                    className={`mt-1 block w-full border ${errors.message ? "border-red-500" : "border-gray-200"
+                      } rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 ${errors.message
+                        ? "focus:ring-red-100"
+                        : "focus:ring-sky-100"
+                      }`}
+                    placeholder="Tell us about your requirements..."
+                  />
+                  {errors.message && (
+                    <span className="text-xs text-red-500 mt-1">
+                      {errors.message}
+                    </span>
+                  )}
+                </label>
+
+                <div className="flex justify-center">
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="px-6 py-2.5 bg-brand-cyan hover:bg-sky-600 text-white rounded-md font-medium text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    style={{ backgroundColor: "var(--brand-cyan, #01C1F2)" }}
+                  >
+                    {loading ? "Submitting..." : "Submit"}
+                  </button>
+                </div>
+              </form>
+            )}
           </div>
         </div>
       </div>

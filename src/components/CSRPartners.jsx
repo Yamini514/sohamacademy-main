@@ -1,36 +1,24 @@
 import React from "react";
-import amd from "../assets/CSR/amd.png";
-import coforge from "../assets/CSR/coforge.png";
-import colosseum from "../assets/CSR/colosseum.png";
-import gainsight from "../assets/CSR/gainsight.png";
-import kriti from "../assets/CSR/kriti.png";
-import lt from "../assets/CSR/l&t.png";
-import ncc from "../assets/CSR/ncc.png";
-import nimble from "../assets/CSR/nimble.png";
-import ntt from "../assets/CSR/ntt.png";
-import primavera from "../assets/CSR/primavera.png";
-import rimini from "../assets/CSR/rimini.png";
-import schrodinger from "../assets/CSR/schrodinger.png";
-import snp from "../assets/CSR/snp.png";
-import synchrony from "../assets/CSR/synchrony.png";
+
 
 export default function CSRPartners({ partners = null, className = "" }) {
   const defaultPartners = [
-    { id: 1, name: "AMD", logo: amd },
-    { id: 2, name: "Coforge", logo: coforge },
-    { id: 3, name: "Colosseum", logo: colosseum },
-    { id: 4, name: "Gainsight", logo: gainsight },
-    { id: 5, name: "Kriti", logo: kriti },
-    { id: 6, name: "L&T", logo: lt },
-    { id: 7, name: "NCC", logo: ncc },
-    { id: 8, name: "Nimble", logo: nimble },
-    { id: 9, name: "NTT", logo: ntt },
-    { id: 10, name: "Primavera", logo: primavera },
-    { id: 11, name: "Rimini", logo: rimini },
-    { id: 12, name: "Schrodinger", logo: schrodinger },
-    { id: 13, name: "SNP", logo: snp },
-    { id: 14, name: "Synchrony", logo: synchrony },
-  ];
+  { id: 1, name: "AMD", logo: "/Sponsor Logos & Ria logo/AMD.png" },
+  { id: 2, name: "Coforge", logo: "/Sponsor Logos & Ria logo/Coforge.png" },
+  { id: 3, name: "Colosseum", logo: "/Sponsor Logos & Ria logo/Colosseum.png" },
+  { id: 4, name: "Gainsight", logo: "/Sponsor Logos & Ria logo/Gainsight.png" },
+  { id: 5, name: "Kriti", logo: "/Sponsor Logos & Ria logo/Kriti.png" },
+  { id: 6, name: "L&T", logo: "/Sponsor Logos & Ria logo/L&T.png" },
+  { id: 7, name: "NCC", logo: "/Sponsor Logos & Ria logo/NCC.png" },
+  { id: 8, name: "Nimble", logo: "/Sponsor Logos & Ria logo/Nimble.png" },
+  { id: 9, name: "NTT", logo: "/Sponsor Logos & Ria logo/NTT DATA.png" },
+  { id: 10, name: "Primavera", logo: "/Sponsor Logos & Ria logo/Primavera.png" },
+  { id: 11, name: "Rimini", logo: "/Sponsor Logos & Ria logo/Rimini Street.png" },
+  { id: 12, name: "Schrodinger", logo: "/Sponsor Logos & Ria logo/Schrodinger.png" },
+  { id: 13, name: "SNP", logo: "/Sponsor Logos & Ria logo/Snp.png" },
+  { id: 14, name: "Synchrony", logo: "/Sponsor Logos & Ria logo/Synchrony.png" },
+];
+
 
   const list = partners ?? defaultPartners;
   const extendedList = [...list, ...list]; // duplicate for infinite scroll

@@ -13,9 +13,10 @@ export default function Home() {
     <main className="min-h-screen bg-white  text-gray-800">
       <section>
       <HeroSection />
+       <ProgramStats/>
       <VideoSection  />
       <ProgramHighlights />
-      <ProgramStats/>
+     
       <HowItWorks />
       <Testimonials/>
       <CSRPartners/>

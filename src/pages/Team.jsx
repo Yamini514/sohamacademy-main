@@ -5,23 +5,69 @@ import Ganitha from "../assets/Team/Ganitha.png";
 import Anusha from "../assets/Team/Anusha.png";
 import Spandhana from "../assets/Team/Spandhana.png";
 import Rahul from "../assets/Team/Rahul.png";
+import pavan from "../assets/about2025-26/pavan.png"
+
+import pavani from "../assets/about2025-26/pavani.png"
+import  praharsha from "../assets/about2025-26/praharsha.png"
+import santhosh from "../assets/about2025-26/santhosh.png"
+import ramya from "../assets/about2021-25/ramya.png"
+
+
+import { useState, useMemo } from "react";
 
 const TEAM = [
-  { id: 1, name: "Komaragiri Sahadev", role: "Founder & Director, Soham Academy of Human Excellence", img: i1 },
+  {
+    id: 1,
+    name: "Komaragiri Sahadev",
+    role: "Founder & Director, Soham Academy of Human Excellence",
+    img: i1,
+  },
   { id: 2, name: "B Jeshwanth", role: "Program Coordinator", img: Jeshwanth },
-  { id: 3, name: "Ganitha", role: "Program Coordinator", img: Ganitha },
-  { id: 4, name: "Y Anusha", role: "Core Team Member", img: Anusha },
+  // { id: 3, name: "Ganitha", role: "Program Coordinator", img: Ganitha },
+  // { id: 4, name: "Y Anusha", role: "Core Team Member", img: Anusha },
   { id: 5, name: "Spandhana", role: "Core Team Member", img: Spandhana },
-  { id: 6, name: "Rahul Goud", role: "Core Team Member", img: Rahul },
+  // { id: 6, name: "Rahul Goud", role: "Core Team Member", img: Rahul },
 ];
 
+const CORE_TEAM_BY_YEAR = {"AY 2025-26":[{
+    id: 1,
+    name: "pavan",
+    role: "Core Team Member",
+    img: pavan,
+  },
+ 
+  { id: 2, name: "Pavani", role: "Core Team Member", img: pavani },
+  { id: 3, name: "Santhosh", role: "Core Team Member", img: santhosh },
+  { id: 4, name: "Praharsha", role: "Core Team Member", img: praharsha },
+ ],
+ 
+  "AY 2021-25":[
+ 
+  {
+    id: 1,
+    name: "Anusha",
+    role: "Core Team Member",
+    img: Anusha,
+  },
+  { id: 2, name: "Spandana", role: "Core Team Member", img: Spandhana },
+  { id: 3, name: "Rahul Goud", role: "Core Team Member", img: Rahul },
+  { id: 4, name: "Ramya", role: "Core Team Member", img: ramya },
+ 
+]};
+
+
 export default function Team() {
+    const years = useMemo(() => Object.keys(CORE_TEAM_BY_YEAR), []);
+  const [activeYear, setActiveYear] = useState(years[0]);
+  const coreTeam = CORE_TEAM_BY_YEAR[activeYear] || [];
   return (
     <main className="bg-white min-h-screen">
       <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16">
         {/* Section heading */}
         <header className="text-center mb-10">
-          <p className="mt-3 text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900">OUR LEADERSHIP</p>
+          <p className="mt-3 text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900">
+            OUR LEADERSHIP
+          </p>
           <h1 className="text-2xl py-5 text-sky-500 font-bold tracking-wide">
             Awesome People Behind Us
           </h1>
@@ -30,7 +76,7 @@ export default function Team() {
         {/* Grid */}
         <section
           aria-label="Team members"
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8"
+          className="grid grid-cols-2 sm:grid-cols- md:grid-cols-3 gap-8 justify-center"
         >
           {TEAM.map((member) => (
             <article key={member.id} className="relative group">
@@ -43,7 +89,7 @@ export default function Team() {
                 <img
                   src={member.img}
                   alt={`${member.name} — ${member.role}`}
-                  className="w-full h-56 object-cover md:h-64 lg:h-56 block"
+                  className="w-full h-56 object-cover md:h-64 lg:h-80 block"
                   loading="lazy"
                 />
 
@@ -66,6 +112,56 @@ export default function Team() {
               </div>
             </article>
           ))}
+        </section>
+        {/* ✅ Core Team (Year wise) */}
+        <section className="mt-16" aria-label="Core team year wise">
+          <div className="text-center mb-8">
+            <p className="text-3xl sm:text-4xl font-bold text-slate-900">
+              CORE TEAM
+            </p>
+            <p className="text-lg text-sky-500 font-semibold mt-2">
+              Year-wise Team Members
+            </p>
+          </div>
+
+          {/* Tabs (AY...) */}
+          <div className="flex flex-wrap gap-3 justify-start mb-8">
+            {years.map((y) => (
+              <button
+                key={y}
+                onClick={() => setActiveYear(y)}
+                className={`px-6 py-3 rounded-md border text-sm font-semibold transition
+                  ${
+                    activeYear === y
+                      ? "bg-slate-900 text-white border-slate-900"
+                      : "bg-white text-slate-800 border-slate-200 hover:border-slate-400"
+                  }
+                `}
+              >
+                {y}
+              </button>
+            ))}
+          </div>
+
+          {/* 4 images layout (like screenshot) */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
+            {coreTeam.slice(0, 4).map((m) => (
+              <div key={m.id} className="flex flex-col items-center">
+                <div className="w-48 h-48 bg-white shadow-sm border border-slate-200 overflow-hidden">
+                  <img
+                    src={m.img}
+                    alt={m.name}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <p className="mt-3 font-semibold text-slate-900 text-center">
+                  {m.name}
+                </p>
+                <p className="text-sm text-slate-500 text-center">{m.role}</p>
+              </div>
+            ))}
+          </div>
         </section>
       </div>
     </main>
