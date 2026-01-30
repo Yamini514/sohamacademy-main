@@ -90,9 +90,7 @@ export default function CSRPartners({ partners = null, className = "" }) {
                     loading="lazy"
                   />
                 </div>
-                <span className="mt-2 text-sm md:text-base font-medium text-gray-800">
-                  {p.name}
-                </span>
+                
               </div>
             ))}
           </div>
