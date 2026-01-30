@@ -15,10 +15,10 @@ import logo from "../assets/brand.png";
 import heroImg from "../assets/2024-25/hero.png";
 
 // Team images
-import sahadev from "../assets/2024-25/sahadevKomaragiri.png";
+import sahadev from "../assets/2024-25/SahadevKomaragiri.png";
 import prasad from "../assets/2024-25/PrasadKomaragiri.png";
 import ramya from "../assets/2024-25/Ramya.png";
-import jeshwanth from "../assets/2024-25/jeshwanth.png";
+import jeshwanth from "../assets/2024-25/Jeshwanth.png";
 import kushal from "../assets/2024-25/KushalManikanta.png";
 import jahnavi from "../assets/2024-25/Jahnavi.png";
 import chandana from "../assets/2024-25/Chandana.png";
