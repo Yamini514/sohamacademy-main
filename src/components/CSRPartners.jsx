@@ -78,7 +78,6 @@ export default function CSRPartners({ partners = null, className = "" }) {
                     loading="lazy"
                   />
                 </div>
-                
               </div>
             ))}
           </div>

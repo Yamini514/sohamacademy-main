@@ -19,7 +19,7 @@ import sahadev from "../assets/2024-25/sahadevKomaragiri.png";
 import prasad from "../assets/2024-25/PrasadKomaragiri.png";
 import ramya from "../assets/2024-25/Ramya.png";
 import jeshwanth from "../assets/2024-25/jeshwanth.png";
-import kushal from "../assets/2024-25/kushalManiKanta.png";
+import kushal from "../assets/2024-25/KushalManikanta.png";
 import jahnavi from "../assets/2024-25/Jahnavi.png";
 import chandana from "../assets/2024-25/Chandana.png";
 import manohar from "../assets/2024-25/Manohar.png";
